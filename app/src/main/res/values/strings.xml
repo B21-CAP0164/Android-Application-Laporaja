@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Laporaja</string>
+    <string name="images">Images</string>
+    <string name="name">Name</string>
+    <string name="email">email</string>
+    <string name="logOut">Log Out</string>
 </resources>
