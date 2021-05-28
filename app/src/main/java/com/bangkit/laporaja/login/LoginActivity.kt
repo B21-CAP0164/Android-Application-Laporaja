@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.laporaja.databinding.ActivityLoginBinding
-import com.bangkit.laporaja.home.MainActivity
+import com.bangkit.laporaja.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
             .build()
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        binding.signInButton.setSize(SignInButton.SIZE_WIDE)
         binding.signInButton.setOnClickListener {
             Toast.makeText(this, "Google Auth", Toast.LENGTH_SHORT).show()
             val signInIntent = mGoogleSignInClient.signInIntent
