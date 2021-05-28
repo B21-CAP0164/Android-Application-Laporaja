@@ -51,6 +51,7 @@ dependencies {
 
     //auth
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     //testing
     testImplementation 'junit:junit:4.13.2'

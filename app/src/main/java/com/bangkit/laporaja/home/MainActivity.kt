@@ -1,15 +1,15 @@
-package com.bangkit.laporaja.ui.home
+package com.bangkit.laporaja.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.laporaja.databinding.ActivityMainBinding
-import com.bangkit.laporaja.ui.login.LoginActivity
+import com.bangkit.laporaja.login.LoginActivity
 import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -18,6 +18,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val account = GoogleSignIn.getLastSignedInAccount(this)
+        if(account == null){
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         showLoading(true)
         view()
