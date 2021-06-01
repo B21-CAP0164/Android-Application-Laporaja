@@ -22,11 +22,15 @@ class MainActivity : AppCompatActivity() {
         if (account == null) {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            this.finish()
+            finishAfterTransition()
         }
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment)
         navView.setupWithNavController(navController)
+    }
+
+    fun destroy(){
+        finishAfterTransition()
     }
 }
