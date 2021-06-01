@@ -25,4 +25,6 @@
     <string name="title_activity_main2">MainActivity</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="laporan">Laporan</string>
+    <string name="dummy_value">10</string>
 </resources>

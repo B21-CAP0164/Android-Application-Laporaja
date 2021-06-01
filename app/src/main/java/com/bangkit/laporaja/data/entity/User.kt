@@ -1,6 +1,6 @@
-package com.bangkit.laporaja.core.data.source
+package com.bangkit.laporaja.data.entity
 
-data class UserEntity(
+data class User(
     var id: Int,
     var email: String,
     var name: String,
