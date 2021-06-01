@@ -5,6 +5,12 @@
     <string name="title_history">History</string>
     <string name="title_profile">Profile</string>
 
+    <!-- home text -->
+    <string name="hello_string">Hello, %1$s!</string>
+    <string name="jumlah_string"><b>10</b>\nLaporan</string>
+    <string name="laporan_btn">Buat Laporan</string>
+    <string name="history_laporan">Laporan Terakhirmu</string>
+
     <!-- user-->
     <string name="images">Images</string>
     <string name="name">Name</string>
