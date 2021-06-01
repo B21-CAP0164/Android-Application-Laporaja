@@ -18,7 +18,8 @@
         <activity
             android:name="com.bangkit.laporaja.views.login.LoginActivity"
             android:theme="@style/Theme.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
