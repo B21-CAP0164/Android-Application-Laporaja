@@ -3,10 +3,10 @@
     <!-- menu -->
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_profile">Profilmu</string>
 
     <!-- home text -->
-    <string name="hello_string">Hello, %1$s!</string>
+    <string name="hello_string">Halo, %1$s!</string>
     <string name="laporan">Laporan</string>
     <string name="dummy_value">10</string>
     <string name="laporan_btn">Buat Laporan</string>
@@ -23,16 +23,9 @@
     <string name="images">Images</string>
     <string name="name">Name</string>
     <string name="email">email@gmail.com</string>
-    <string name="logOut">Log Out</string>
+    <string name="logOut">Keluar</string>
 
     <!-- fragment -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hello_home_fragment">Hello Home fragment</string>
-    <string name="hello_history_fragment">Hello History fragment</string>
-    <string name="hello_profile_fragment">Hello Profile fragment</string>
-    <string name="title_activity_main2">MainActivity</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="settings">settings</string>
 
 </resources>

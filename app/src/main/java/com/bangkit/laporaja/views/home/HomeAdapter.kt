@@ -2,6 +2,7 @@ package com.bangkit.laporaja.views.home
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.laporaja.R
 import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.databinding.ItemHistoryListBinding
 import com.bumptech.glide.Glide
@@ -35,8 +36,10 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(private val binding: ItemHistoryListBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        fun bind(report: Report) {
+            binding.tvLocation.text = report.location
+            binding.tvReportIdList.text = report.id.toString()
 
-        fun bind(movie: Report) {
             val shimmer =
                 Shimmer.AlphaHighlightBuilder()// The attributes for a ShimmerDrawable is set by this builder
                     .setDuration(1000) // how long the shimmering animation takes to do one full sweep
@@ -50,6 +53,15 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
             val shimmerDrawable = ShimmerDrawable().apply {
                 setShimmer(shimmer)
             }
+
+            val url = "https://image.tmdb.org/t/p/original${report.photo}"
+            Glide.with(binding.imgReport.context)
+                .load(url)
+                .apply(
+                    RequestOptions().override(400, 400).placeholder(shimmerDrawable)
+                        .error(R.drawable.ic_broken_image_black)
+                )
+                .into(binding.imgReport)
         }
     }
 
