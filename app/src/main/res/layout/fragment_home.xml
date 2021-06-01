@@ -94,6 +94,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@color/black"
                 android:textSize="12sp"
+                android:background="@drawable/shape_button_white"
                 app:backgroundTint="@color/white"
                 app:icon="@drawable/ic_baseline_camera_alt_24"
                 app:iconTint="@color/black"

@@ -8,9 +8,9 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image_bg"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="56dp"
         android:scaleType="fitXY"
         android:src="@drawable/login_rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,22 +24,47 @@
         android:id="@+id/appCompatImageView"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/lapor_aja_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35000002" />
 
-    <com.google.android.gms.common.SignInButton
+    <Button
         android:id="@+id/sign_in_button"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:elevation="4dp"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/shape_button_white"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/common_signin_button_text_long"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:icon="@drawable/google_icon"
+        app:iconTint="@null"
+        app:iconSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/image_bg"
-        app:layout_constraintVertical_bias="0.283" />
+        app:layout_constraintVertical_bias="0.32999998" />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
+        app:layout_constraintEnd_toEndOf="@+id/image_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_bg" />
 </androidx.constraintlayout.widget.ConstraintLayout>

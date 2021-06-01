@@ -27,5 +27,7 @@
 
     <!-- fragment -->
     <string name="settings">settings</string>
+    <string name="logout_confirmation">Tekan lagi untuk keluar</string>
+    <string name="exit_confirmation">Tekan lagi untuk keluar</string>
 
 </resources>

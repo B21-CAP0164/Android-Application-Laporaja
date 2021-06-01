@@ -3,6 +3,8 @@ package com.bangkit.laporaja.views.profile
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.R
@@ -15,8 +17,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private lateinit var currentActivity : MainActivity
-
+    private lateinit var currentActivity: MainActivity
+    private var doubleClickToLogout = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +45,18 @@ class ProfileFragment : Fragment() {
             .load(acct?.photoUrl)
             .into(binding.profileImage)
 
+        val logoutAlert = activity?.let {
+            AlertDialog.Builder(it).setIcon(R.drawable.ic_exit_black)
+                .setTitle("Keluar")
+                .setMessage("Yakin ingin keluar?")
+                .setPositiveButton("Keluar") { _, _ ->
+                    signOut()
+                    Toast.makeText(activity, "Berhasil keluar", Toast.LENGTH_SHORT).show()
+                }.setNegativeButton("Tidak", null)
+        }
+
         binding.logout.setOnClickListener {
-            signOut()
+            logoutAlert?.show()
         }
     }
 

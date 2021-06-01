@@ -2,22 +2,28 @@ package com.bangkit.laporaja.views.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import com.bangkit.laporaja.databinding.ActivityLoginBinding
+import androidx.lifecycle.lifecycleScope
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.R
+import com.bangkit.laporaja.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private var doubleBackToExitOnce: Boolean = false
 
     companion object {
         private const val RC_SIGN_IN = 0
@@ -28,16 +34,17 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        lifecycleScope.launchWhenCreated {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+            val mGoogleSignInClient = GoogleSignIn.getClient(this@LoginActivity, gso)
 
-        binding.signInButton.setSize(SignInButton.SIZE_WIDE)
-        binding.signInButton.setOnClickListener {
-            Toast.makeText(this, "Google Auth", Toast.LENGTH_SHORT).show()
-            val signInIntent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            binding.signInButton.setOnClickListener {
+                binding.progressBar.visibility = View.VISIBLE
+                val signInIntent = mGoogleSignInClient.signInIntent
+                startActivityForResult(signInIntent, RC_SIGN_IN)
+            }
         }
     }
 
@@ -57,17 +64,52 @@ class LoginActivity : AppCompatActivity() {
             updateUI(true)
         } catch (e: ApiException) {
             Log.d("TAG", "signInResult:failed code=" + e.statusCode)
+
             updateUI(false)
         }
     }
 
     private fun updateUI(bool: Boolean) {
-        if (bool) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finishAfterTransition()
-        } else {
-            Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch(Dispatchers.Default) {
+            withContext(Dispatchers.Main) {
+                binding.progressBar.visibility = View.GONE
+            }
+
+            if (bool) {
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Welcome, ${GoogleSignIn.getLastSignedInAccount(this@LoginActivity)?.givenName}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                this@LoginActivity.finishAfterTransition()
+            } else {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@LoginActivity, "Login Failed", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
+    }
+
+    override fun onBackPressed() {
+        if (doubleBackToExitOnce) {
+            finishAfterTransition()
+            return
+        }
+
+        this.doubleBackToExitOnce = true
+
+        Toast.makeText(
+            this,
+            resources.getString(R.string.exit_confirmation),
+            Toast.LENGTH_SHORT
+        ).show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            kotlin.run { doubleBackToExitOnce = false }
+        }, 2000)
     }
 }
