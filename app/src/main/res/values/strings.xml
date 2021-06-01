@@ -7,10 +7,11 @@
 
     <!-- home text -->
     <string name="hello_string">Hello, %1$s!</string>
-    <string name="jumlah_string"><b>10</b>\nLaporan</string>
+    <string name="laporan">Laporan</string>
+    <string name="dummy_value">10</string>
     <string name="laporan_btn">Buat Laporan</string>
     <string name="history_laporan">Laporan Terakhirmu</string>
-
+    
     <!-- user-->
     <string name="images">Images</string>
     <string name="name">Name</string>
@@ -25,6 +26,5 @@
     <string name="title_activity_main2">MainActivity</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="laporan">Laporan</string>
-    <string name="dummy_value">10</string>
+    
 </resources>
