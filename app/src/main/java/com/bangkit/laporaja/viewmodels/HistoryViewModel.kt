@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.cache
 
 class HistoryViewModel(private val repos: LaporAjaRepositoryInterface) : ViewModel() {
-    fun getUserHistory(userId: Long): Flow<List<Report>> = repos.getUserReports(userId)
+    fun getUserHistory(userId: String): Flow<List<Report>> = repos.getUserReports(userId)
 }

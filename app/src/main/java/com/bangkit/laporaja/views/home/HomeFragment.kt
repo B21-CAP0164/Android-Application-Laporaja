@@ -2,11 +2,8 @@ package com.bangkit.laporaja.views.home
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.laporaja.MainActivity
@@ -18,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -60,6 +58,12 @@ class HomeFragment : Fragment() {
         currentActivity.supportActionBar?.title = " "
 
         lifecycleScope.launch(Dispatchers.Default) {
+            viewModel.getUserReportsCount(acct?.id as String).collectLatest {
+                withContext(Dispatchers.Main) {
+                    binding.tvJumlah.text = it.toString()
+                }
+            }
+
             viewAdapter.setOnItemClickCallback(object : HomeAdapter.OnItemClickCallback {
                 override fun onItemClicked(data: Report) {
                     showReportDetail(data)

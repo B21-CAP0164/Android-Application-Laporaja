@@ -28,7 +28,7 @@ class RemoteDataSource(private val api: ApiService) {
         }
     }
 
-    fun getUserReports(userId: Long) : Flow<List<ReportListResponseItem>> = flow {
+    fun getUserReports(userId: String) : Flow<List<ReportListResponseItem>> = flow {
         try {
             val response = api.getUserReports(userId, format)
             val dataArray = response.response
@@ -43,7 +43,7 @@ class RemoteDataSource(private val api: ApiService) {
         }
     }
 
-    fun getReportDetail(userId: Long, reportId: Long) : Flow<ReportResponseItem> = flow {
+    fun getReportDetail(userId: String, reportId: Long) : Flow<ReportResponseItem> = flow {
         try {
             val response = api.getReportDetails(userId, reportId, format)
             val data = response.reportResponse

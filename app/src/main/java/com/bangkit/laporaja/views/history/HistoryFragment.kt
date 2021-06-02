@@ -50,7 +50,7 @@ class HistoryFragment : Fragment() {
         currentActivity.setSupportActionBar(toolbar)
 
         val account = GoogleSignIn.getLastSignedInAccount(activity)
-        val userId: Long = 1
+        val userId = "1"
         Log.d("GOOGLE ID", account?.id.toString())
 
         lifecycleScope.launch(Dispatchers.Default) {

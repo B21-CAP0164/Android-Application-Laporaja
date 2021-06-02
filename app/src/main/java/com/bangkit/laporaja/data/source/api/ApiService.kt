@@ -14,13 +14,13 @@ interface ApiService {
 
     @GET("report/{id}")
     suspend fun getUserReports(
-        @Path("id") id: Long,
+        @Path("id") id: String,
         @Query("format") format: String
     ): ReportListResponse
 
     @GET("report/{id}/{report_id}")
     suspend fun getReportDetails(
-        @Path("id") id: Long,
+        @Path("id") id: String,
         @Path("report_id") reportId: Long,
         @Query("format") format: String
     ): ReportResponse

@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 class HomeViewModel(private val repos: LaporAjaRepositoryInterface) : ViewModel() {
     fun getRecentReports(): Flow<List<Report>> = repos.getRecentReports()
+
+    fun getUserReportsCount(userId: String) = repos.getUserReportsCount(userId)
 }

@@ -24,5 +24,5 @@ data class ReportListResponseItem(
 	val userId: Long? = null,
 
 	@field:SerializedName("id")
-	val id: Long? = null
+	val id: String? = null
 ) : Parcelable

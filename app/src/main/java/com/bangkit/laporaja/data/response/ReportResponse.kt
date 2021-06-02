@@ -36,7 +36,7 @@ data class ReportResponseItem(
 	val id: Long? = null,
 
 	@field:SerializedName("user")
-	val user: Long? = null,
+	val user: String? = null,
 
 	@field:SerializedName("lat")
 	val lat: String? = null,

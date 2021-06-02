@@ -6,6 +6,6 @@ import com.bangkit.laporaja.data.entity.Report
 import kotlinx.coroutines.flow.Flow
 
 class ReportDetailViewModel(private val repos: LaporAjaRepositoryInterface) : ViewModel() {
-    fun getDetails(userId: Long, reportId: Long): Flow<Report> =
+    fun getDetails(userId: String, reportId: Long): Flow<Report> =
         repos.getReportDetails(userId, reportId)
 }
