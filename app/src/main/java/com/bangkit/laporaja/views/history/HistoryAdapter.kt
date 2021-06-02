@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.laporaja.R
 import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.databinding.ItemHistoryListBinding
+import com.bangkit.laporaja.utils.ShimmerDrawableInit
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.facebook.shimmer.Shimmer
@@ -52,20 +53,6 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
 
     inner class HistoryViewHolder(private val binding: ItemHistoryListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private val shimmer =
-            Shimmer.AlphaHighlightBuilder()// The attributes for a ShimmerDrawable is set by this builder
-                .setDuration(1000) // how long the shimmering animation takes to do one full sweep
-                .setBaseAlpha(0.7f) //the alpha of the underlying children
-                .setHighlightAlpha(0.6f) // the shimmer alpha amount
-                .setDirection(Shimmer.Direction.LEFT_TO_RIGHT)
-                .setAutoStart(true)
-                .build()
-
-        // This is the placeholder for the imageView
-        private val shimmerDrawable = ShimmerDrawable().apply {
-            setShimmer(shimmer)
-        }
-
         fun bind(report: Report) {
             binding.tvLocation.text = report.location
             binding.tvReportIdList.text = binding.tvReportIdList.context.resources.getString(R.string.id_laporan, report.id.toString())
@@ -73,7 +60,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
             Glide.with(binding.imgReport.context)
                 .load(report.photo)
                 .apply(
-                    RequestOptions().override(400, 400).placeholder(shimmerDrawable)
+                    RequestOptions().override(400, 400).placeholder(ShimmerDrawableInit.shimmerDrawable)
                         .error(R.drawable.ic_broken_image_black)
                 )
                 .into(binding.imgReport)

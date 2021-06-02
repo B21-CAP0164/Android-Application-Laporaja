@@ -1,6 +1,8 @@
 package com.bangkit.laporaja.views.history
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
@@ -12,8 +14,6 @@ import com.bangkit.laporaja.R
 import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.databinding.FragmentHistoryBinding
 import com.bangkit.laporaja.viewmodels.HistoryViewModel
-import com.bangkit.laporaja.views.home.HomeAdapter
-import com.bangkit.laporaja.views.home.HomeFragmentDirections
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -68,6 +68,11 @@ class HistoryFragment : Fragment() {
                 if (!item.isNullOrEmpty()) {
                     withContext(Dispatchers.Main) {
                         viewAdapter.setReports(item)
+
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            binding.rvHistory.visibility = View.VISIBLE
+                            binding.shimmerReportHistory.visibility = View.GONE
+                        }, 300)
                     }
                 }
             }

@@ -1,7 +1,10 @@
 package com.bangkit.laporaja.views.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -10,6 +13,7 @@ import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.R
 import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.databinding.FragmentHomeBinding
+import com.bangkit.laporaja.utils.ShimmerDrawableInit
 import com.bangkit.laporaja.viewmodels.HomeViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.coroutines.Dispatchers
@@ -52,6 +56,14 @@ class HomeFragment : Fragment() {
         val text = resources.getString(R.string.hello_string, personName)
         binding.tvHello.text = text
 
+        binding.tvJumlah.background = ShimmerDrawableInit.shimmerDrawable
+        binding.tvJumlah.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                android.R.color.transparent
+            )
+        )
+
         setHasOptionsMenu(true)
         val toolbar = binding.topAppBar
         currentActivity.setSupportActionBar(toolbar)
@@ -60,7 +72,16 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.Default) {
             viewModel.getUserReportsCount(acct?.id as String).collectLatest {
                 withContext(Dispatchers.Main) {
-                    binding.tvJumlah.text = it.toString()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        binding.tvJumlah.background = null
+                        binding.tvJumlah.setTextColor(
+                            ContextCompat.getColor(
+                                requireContext(),
+                                R.color.black
+                            )
+                        )
+                        binding.tvJumlah.text = it.toString()
+                    }, 300)
                 }
             }
 
@@ -74,6 +95,11 @@ class HomeFragment : Fragment() {
                 if (!item.isNullOrEmpty()) {
                     withContext(Dispatchers.Main) {
                         viewAdapter.setReports(item)
+
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            binding.rvRecentReports.visibility = View.VISIBLE
+                            binding.shimmerReportHome.visibility = View.GONE
+                        }, 300)
                     }
                 }
             }
