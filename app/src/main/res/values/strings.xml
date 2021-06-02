@@ -11,7 +11,7 @@
     <string name="laporan">Laporan</string>
     <string name="dummy_value">10</string>
     <string name="laporan_btn">Buat Laporan</string>
-    <string name="history_laporan">Laporan Terakhirmu</string>
+    <string name="history_laporan">Laporan Terbaru</string>
 
     <!-- History-->
     <string name="laporan_anda">Semua Laporan</string>
