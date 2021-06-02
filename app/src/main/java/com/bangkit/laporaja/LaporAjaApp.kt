@@ -7,7 +7,7 @@ import com.bangkit.laporaja.utils.modules.apiModule
 import com.bangkit.laporaja.utils.modules.remoteDataSourceModule
 import com.bangkit.laporaja.utils.modules.repositoryModule
 import com.bangkit.laporaja.utils.modules.retrofitModule
-import com.bangkit.laporaja.utils.viewModelModule
+import com.bangkit.laporaja.utils.modules.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

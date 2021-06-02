@@ -7,27 +7,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bangkit.laporaja.R
+import com.bangkit.laporaja.databinding.FragmentHistoryBinding
+import com.bangkit.laporaja.databinding.ReportDetailFragmentBinding
+import com.bangkit.laporaja.viewmodels.HomeViewModel
 import com.bangkit.laporaja.viewmodels.ReportDetailViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ReportDetailFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ReportDetailFragment()
-    }
-
-    private lateinit var viewModel: ReportDetailViewModel
+    private var _binding: ReportDetailFragmentBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel by viewModel<ReportDetailViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.report_detail_fragment, container, false)
-    }
+    ): View {
+        _binding = ReportDetailFragmentBinding.inflate(inflater, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ReportDetailViewModel::class.java)
-        // TODO: Use the ViewModel
+        return binding.root
     }
-
 }

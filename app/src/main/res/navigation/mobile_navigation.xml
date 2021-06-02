@@ -21,7 +21,11 @@
             app:destination="@id/navigation_profile" />
         <action
             android:id="@+id/action_navigation_home_to_reportDetailFragment"
-            app:destination="@id/reportDetailFragment" />
+            app:destination="@id/reportDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -31,7 +35,11 @@
         tools:layout="@layout/fragment_history" >
         <action
             android:id="@+id/action_navigation_history_to_reportDetailFragment"
-            app:destination="@id/reportDetailFragment" />
+            app:destination="@id/reportDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment

@@ -67,11 +67,10 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
         fun bind(report: Report) {
             binding.tvLocation.text = report.location
-            binding.tvReportIdList.text = report.id.toString()
+            binding.tvReportIdList.text = binding.tvReportIdList.context.resources.getString(R.string.id_laporan, report.id.toString())
 
-            val url = "https://image.tmdb.org/t/p/original${report.photo}"
             Glide.with(binding.imgReport.context)
-                .load(url)
+                .load(report.photo)
                 .apply(
                     RequestOptions().override(400, 400).placeholder(shimmerDrawable)
                         .error(R.drawable.ic_broken_image_black)

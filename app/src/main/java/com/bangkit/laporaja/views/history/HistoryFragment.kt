@@ -5,11 +5,15 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.R
+import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.databinding.FragmentHistoryBinding
 import com.bangkit.laporaja.viewmodels.HistoryViewModel
+import com.bangkit.laporaja.views.home.HomeAdapter
+import com.bangkit.laporaja.views.home.HomeFragmentDirections
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
@@ -54,6 +58,12 @@ class HistoryFragment : Fragment() {
         Log.d("GOOGLE ID", account?.id.toString())
 
         lifecycleScope.launch(Dispatchers.Default) {
+            viewAdapter.setOnItemClickCallback(object : HistoryAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: Report) {
+                    showReportDetail(data)
+                }
+            })
+
             viewModel.getUserHistory(userId).collectLatest { item ->
                 if (!item.isNullOrEmpty()) {
                     withContext(Dispatchers.Main) {
@@ -74,5 +84,11 @@ class HistoryFragment : Fragment() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showReportDetail(report: Report) {
+        val toReportDetail =
+            HistoryFragmentDirections.actionNavigationHistoryToReportDetailFragment(report)
+        view?.findNavController()?.navigate(toReportDetail)
     }
 }

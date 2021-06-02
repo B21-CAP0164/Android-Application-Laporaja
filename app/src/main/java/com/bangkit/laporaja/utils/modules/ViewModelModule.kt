@@ -1,4 +1,4 @@
-package com.bangkit.laporaja.utils
+package com.bangkit.laporaja.utils.modules
 
 import com.bangkit.laporaja.viewmodels.HistoryViewModel
 import com.bangkit.laporaja.viewmodels.HomeViewModel

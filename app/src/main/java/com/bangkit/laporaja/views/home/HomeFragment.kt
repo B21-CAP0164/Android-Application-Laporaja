@@ -72,7 +72,9 @@ class HomeFragment : Fragment() {
 
             viewModel.getRecentReports().collectLatest { item ->
                 if (!item.isNullOrEmpty()) {
-                    viewAdapter.setReports(item)
+                    withContext(Dispatchers.Main) {
+                        viewAdapter.setReports(item)
+                    }
                 }
             }
         }

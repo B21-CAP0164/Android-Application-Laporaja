@@ -1,7 +1,7 @@
 package com.bangkit.laporaja.data.entity
 
 data class User(
-    var id: Int,
+    var id: String,
     var email: String,
     var name: String,
     var photo: String

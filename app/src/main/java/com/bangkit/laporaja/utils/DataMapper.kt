@@ -7,16 +7,16 @@ import com.bangkit.laporaja.data.response.ReportResponseItem
 object DataMapper {
     fun mapReportListResponseToReportList(input: List<ReportListResponseItem>) = input.map {
         Report(
-            id = it.id as Int,
-            userId = it.userId as Int,
+            id = it.id as Long,
+            userId = it.userId as String,
             photo = it.image as String,
             location = it.locationName as String,
         )
     }
 
     fun mapReportResponseToReport(it: ReportResponseItem) = Report(
-        id = it.id as Int,
-        userId = it.user as Int,
+        id = it.id as Long,
+        userId = it.user as String,
         photo = it.image as String,
         location = it.locationName as String,
         latitude = it.lat?.toFloat() as Float,

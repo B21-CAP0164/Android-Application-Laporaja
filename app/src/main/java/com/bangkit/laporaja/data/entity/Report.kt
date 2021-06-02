@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Report (
-    val id: Int,
-    val userId: Int,
+    val id: Long,
+    val userId: String,
     val photo: String,
     val location: String,
     val latitude: Float? = null,

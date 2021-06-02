@@ -16,6 +16,7 @@
     <!-- History-->
     <string name="laporan_anda">Semua Laporan</string>
     <string name="dummy_id">#1022</string>
+    <string name="id_laporan">#%1$s</string>
     <string name="lokasi">Lokasi</string>
     <string name="dummy_location">Cikarang, Jawa Barat</string>
     <string name="report_picture">report_picture</string>
@@ -30,7 +31,5 @@
     <string name="settings">settings</string>
     <string name="logout_confirmation">Tekan lagi untuk keluar</string>
     <string name="exit_confirmation">Tekan lagi untuk keluar</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
