@@ -4,6 +4,7 @@ buildscript {
         mockito_version = "3.10.0"
         kotlin_version = "1.5.10"
         koin_version = '3.0.1'
+        camerax_version = '1.0.0'
     }
     repositories {
         google()
