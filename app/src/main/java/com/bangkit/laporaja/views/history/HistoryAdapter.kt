@@ -1,4 +1,4 @@
-package com.bangkit.laporaja.views.home
+package com.bangkit.laporaja.views.history
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,7 +11,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerDrawable
 
-class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+
     private lateinit var onItemClickCallback: OnItemClickCallback
     private val listReport = ArrayList<Report>()
 
@@ -31,13 +32,13 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val itemHistoryListBinding =
             ItemHistoryListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return HomeViewHolder(itemHistoryListBinding)
+        return HistoryViewHolder(itemHistoryListBinding)
     }
 
-    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val report = listReport[position]
 
         holder.itemView.setOnClickListener {
@@ -49,7 +50,7 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     override fun getItemCount(): Int = listReport.size
 
-    inner class HomeViewHolder(private val binding: ItemHistoryListBinding) :
+    inner class HistoryViewHolder(private val binding: ItemHistoryListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val shimmer =
             Shimmer.AlphaHighlightBuilder()// The attributes for a ShimmerDrawable is set by this builder
@@ -79,5 +80,4 @@ class HomeAdapter : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
                 .into(binding.imgReport)
         }
     }
-
 }

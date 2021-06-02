@@ -13,13 +13,26 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_camera"
             app:destination="@id/navigation_camera" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_history"
+            app:destination="@id/navigation_history" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_home_to_reportDetailFragment"
+            app:destination="@id/reportDetailFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
         android:name="com.bangkit.laporaja.views.history.HistoryFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_navigation_history_to_reportDetailFragment"
+            app:destination="@id/reportDetailFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -32,5 +45,15 @@
         android:name="com.bangkit.laporaja.views.camera.CameraFragment"
         android:label="@string/title_camera"
         tools:layout="@layout/fragment_camera"/>
+    <fragment
+        android:id="@+id/reportDetailFragment"
+        android:name="com.bangkit.laporaja.views.detail.ReportDetailFragment"
+        android:label="report_detail_fragment"
+        tools:layout="@layout/report_detail_fragment" >
+        <argument
+            android:name="report"
+            app:argType="com.bangkit.laporaja.data.entity.Report"
+            app:nullable="true" />
+    </fragment>
 
 </navigation>

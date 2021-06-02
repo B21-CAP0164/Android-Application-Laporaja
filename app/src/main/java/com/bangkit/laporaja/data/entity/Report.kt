@@ -9,10 +9,10 @@ data class Report (
     val userId: Int,
     val photo: String,
     val location: String,
-    val latitude: Float,
-    val longitude: Float,
-    val description: String?,
-    val damageType: String?,
-    val damageSeverity: String?,
-    val date: String?
+    val latitude: Float? = null,
+    val longitude: Float? = null,
+    val description: String? = null,
+    val damageType: String? = null,
+    val damageSeverity: String? = null,
+    val date: String? = null
 ) : Parcelable

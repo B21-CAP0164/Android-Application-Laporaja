@@ -1,27 +1,27 @@
 package com.bangkit.laporaja.data.source.api
 
-import com.bangkit.laporaja.data.entity.Report
-import retrofit2.Call
+import com.bangkit.laporaja.data.response.ReportListResponse
+import com.bangkit.laporaja.data.response.ReportResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
     @GET("report/")
-    fun getLatestReports(
+    suspend fun getLatestReports(
         @Query("format") format: String
-    ) : Call<Report>
+    ): ReportListResponse
 
     @GET("report/{id}")
-    fun getUserReports(
-        @Path("id") id: Int,
+    suspend fun getUserReports(
+        @Path("id") id: Long,
         @Query("format") format: String
-    )
+    ): ReportListResponse
 
     @GET("report/{id}/{report_id}")
-    fun getReportDetails(
-        @Path("id") id: Int,
-        @Path("report_id") reportId: Int,
+    suspend fun getReportDetails(
+        @Path("id") id: Long,
+        @Path("report_id") reportId: Long,
         @Query("format") format: String
-    )
+    ): ReportResponse
 }

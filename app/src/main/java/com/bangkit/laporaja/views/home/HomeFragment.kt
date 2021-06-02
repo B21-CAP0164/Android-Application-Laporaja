@@ -5,16 +5,27 @@ import android.view.*
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.R
+import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.databinding.FragmentHomeBinding
+import com.bangkit.laporaja.viewmodels.HomeViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var currentActivity: MainActivity
+    private val viewModel by viewModel<HomeViewModel>()
+    private lateinit var viewAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +35,13 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         currentActivity = activity as MainActivity
+        viewAdapter = HomeAdapter()
+
+        binding.rvRecentReports.apply {
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+            adapter = viewAdapter
+            setHasFixedSize(true)
+        }
 
         return binding.root
     }
@@ -41,9 +59,23 @@ class HomeFragment : Fragment() {
         currentActivity.setSupportActionBar(toolbar)
         currentActivity.supportActionBar?.title = " "
 
-        binding.cameraButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_navigation_camera, null)
-        )
+        lifecycleScope.launch(Dispatchers.Default) {
+            viewAdapter.setOnItemClickCallback(object : HomeAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: Report) {
+                    showReportDetail(data)
+                }
+            })
+
+            viewModel.getRecentReports().collectLatest { item ->
+                if (!item.isNullOrEmpty()) {
+                    viewAdapter.setReports(item)
+                }
+            }
+        }
+
+        binding.cameraButton.setOnClickListener {
+            showCamera()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -56,5 +88,17 @@ class HomeFragment : Fragment() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun showCamera() {
+        val toCamera =
+            HomeFragmentDirections.actionNavigationHomeToNavigationCamera()
+        view?.findNavController()?.navigate(toCamera)
+    }
+
+    private fun showReportDetail(report: Report) {
+        val toReportDetail =
+            HomeFragmentDirections.actionNavigationHomeToReportDetailFragment(report)
+        view?.findNavController()?.navigate(toReportDetail)
     }
 }
