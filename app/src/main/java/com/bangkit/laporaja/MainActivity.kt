@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_Laporaja)
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         AppCompatDelegate
             .setDefaultNightMode(
@@ -38,14 +36,17 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(this@MainActivity, LoginActivity::class.java)
                 startActivity(intent)
                 this@MainActivity.finishAfterTransition()
+            } else {
+                binding = ActivityMainBinding.inflate(layoutInflater)
+                setContentView(binding.root)
+
+                val navView: BottomNavigationView = binding.navView
+                val navController = findNavController(R.id.nav_host_fragment)
+                navHostFragment =
+                    supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+                navView.setupWithNavController(navController)
             }
         }
-
-        val navView: BottomNavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment)
-        navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navView.setupWithNavController(navController)
     }
 
     fun destroy(){
