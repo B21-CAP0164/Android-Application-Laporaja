@@ -2,10 +2,10 @@ package com.bangkit.laporaja.views.home
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.R
 import com.bangkit.laporaja.databinding.FragmentHomeBinding
@@ -41,9 +41,9 @@ class HomeFragment : Fragment() {
         currentActivity.setSupportActionBar(toolbar)
         currentActivity.supportActionBar?.title = " "
 
-        binding.cameraButton.setOnClickListener {
-            Toast.makeText(currentActivity, "Take Camera", Toast.LENGTH_SHORT).show()
-        }
+        binding.cameraButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_navigation_camera, null)
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

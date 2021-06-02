@@ -9,7 +9,11 @@
         android:id="@+id/navigation_home"
         android:name="com.bangkit.laporaja.views.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_camera"
+            app:destination="@id/navigation_camera" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_history"
@@ -22,5 +26,11 @@
         android:name="com.bangkit.laporaja.views.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile"/>
+
+    <fragment
+        android:id="@+id/navigation_camera"
+        android:name="com.bangkit.laporaja.views.camera.CameraFragment"
+        android:label="@string/title_camera"
+        tools:layout="@layout/fragment_camera"/>
 
 </navigation>
