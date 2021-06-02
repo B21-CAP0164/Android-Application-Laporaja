@@ -15,6 +15,7 @@ import com.bangkit.laporaja.databinding.ActivityMainBinding
 import com.bangkit.laporaja.views.login.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -51,6 +52,13 @@ class MainActivity : AppCompatActivity() {
 
     fun destroy(){
         finishAfterTransition()
+    }
+
+    fun getOutputDirectory(): File {
+        val mediaDir = externalMediaDirs.firstOrNull()?.let {
+            File(it, "com.bangkit.laporaja").apply { mkdirs() } }
+        return if (mediaDir != null && mediaDir.exists())
+            mediaDir else filesDir
     }
 
     override fun onBackPressed() {
