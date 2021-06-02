@@ -2,6 +2,7 @@ package com.bangkit.laporaja.views.home
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -32,13 +33,17 @@ class HomeFragment : Fragment() {
 
         val acct = GoogleSignIn.getLastSignedInAccount(activity)
         val personName = acct?.givenName
-        val text = resources.getString(R.string.hello_string,personName)
+        val text = resources.getString(R.string.hello_string, personName)
         binding.tvHello.text = text
 
         setHasOptionsMenu(true)
         val toolbar = binding.topAppBar
         currentActivity.setSupportActionBar(toolbar)
         currentActivity.supportActionBar?.title = " "
+
+        binding.cameraButton.setOnClickListener {
+            Toast.makeText(currentActivity, "Take Camera", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -48,7 +53,7 @@ class HomeFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.setting_menu) {
-            
+
         }
         return super.onOptionsItemSelected(item)
     }

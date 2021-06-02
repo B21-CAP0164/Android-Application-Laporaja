@@ -18,7 +18,7 @@
     <string name="lokasi">Lokasi</string>
     <string name="dummy_location">Cikarang, Jawa Barat</string>
     <string name="report_picture">report_picture</string>
-    
+
     <!-- user-->
     <string name="images">Images</string>
     <string name="name">Name</string>
@@ -29,5 +29,7 @@
     <string name="settings">settings</string>
     <string name="logout_confirmation">Tekan lagi untuk keluar</string>
     <string name="exit_confirmation">Tekan lagi untuk keluar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
