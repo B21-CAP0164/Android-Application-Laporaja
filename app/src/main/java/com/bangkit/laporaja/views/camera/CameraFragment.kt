@@ -60,11 +60,17 @@ class CameraFragment : Fragment() {
             )
         }
 
+        currentActivity.removeBottomBar()
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar = binding.topAppBar
+        currentActivity.setSupportActionBar(toolbar)
+        currentActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.cameraButton.setOnClickListener {
             Log.d("item","clicked")
