@@ -3,7 +3,6 @@ package com.bangkit.laporaja.views.history
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -54,8 +53,7 @@ class HistoryFragment : Fragment() {
         currentActivity.setSupportActionBar(toolbar)
 
         val account = GoogleSignIn.getLastSignedInAccount(activity)
-        val userId = "1"
-        Log.d("GOOGLE ID", account?.id.toString())
+        val userId = account?.id.toString()
 
         lifecycleScope.launch(Dispatchers.Default) {
             viewAdapter.setOnItemClickCallback(object : HistoryAdapter.OnItemClickCallback {
@@ -70,7 +68,15 @@ class HistoryFragment : Fragment() {
                         viewAdapter.setReports(item)
 
                         Handler(Looper.getMainLooper()).postDelayed({
+                            binding.listEmpty.visibility = View.GONE
                             binding.rvHistory.visibility = View.VISIBLE
+                            binding.shimmerReportHistory.visibility = View.GONE
+                        }, 300)
+                    }
+                } else {
+                    withContext(Dispatchers.Main) {
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            binding.listEmpty.visibility = View.VISIBLE
                             binding.shimmerReportHistory.visibility = View.GONE
                         }, 300)
                     }

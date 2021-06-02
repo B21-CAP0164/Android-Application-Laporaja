@@ -3,10 +3,8 @@ package com.bangkit.laporaja.data
 import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.data.source.RemoteDataSource
 import com.bangkit.laporaja.utils.DataMapper
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.count
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
 
 class LaporAjaRepository(private val dataSource: RemoteDataSource) : LaporAjaRepositoryInterface {
     override fun getRecentReports(): Flow<List<Report>> {
@@ -27,7 +25,10 @@ class LaporAjaRepository(private val dataSource: RemoteDataSource) : LaporAjaRep
         }
     }
 
-    override fun getUserReportsCount(userId: String): Flow<Int> = flow {
-        emit(dataSource.getUserReports(userId).count())
+    @ExperimentalCoroutinesApi
+    override fun getUserReportsCount(userId: String): Flow<Int> = channelFlow {
+        dataSource.getUserReports(userId).collectLatest {
+            send(it.size)
+        }
     }
 }

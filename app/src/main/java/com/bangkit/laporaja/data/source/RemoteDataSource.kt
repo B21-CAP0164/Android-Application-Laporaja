@@ -21,6 +21,7 @@ class RemoteDataSource(private val api: ApiService) {
             }
         } catch (e: Exception) {
             logError(e, "getRecentReports")
+            emit(ArrayList<ReportListResponseItem>())
         }
     }
 
@@ -35,6 +36,7 @@ class RemoteDataSource(private val api: ApiService) {
             }
         } catch (e: Exception) {
             logError(e, "getUserReports")
+            emit(ArrayList<ReportListResponseItem>())
         }
     }
 
@@ -49,6 +51,7 @@ class RemoteDataSource(private val api: ApiService) {
             }
         } catch (e: Exception) {
             logError(e, "getReportDetail")
+            emit(ReportResponseItem(null, null, null, null, null, null))
         }
     }
 
