@@ -9,8 +9,6 @@ import com.bangkit.laporaja.databinding.ItemHistoryListBinding
 import com.bangkit.laporaja.utils.ShimmerDrawableInit
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.facebook.shimmer.Shimmer
-import com.facebook.shimmer.ShimmerDrawable
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
@@ -55,12 +53,16 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(report: Report) {
             binding.tvLocation.text = report.location
-            binding.tvReportIdList.text = binding.tvReportIdList.context.resources.getString(R.string.id_laporan, report.id.toString())
+            binding.tvReportIdList.text = binding.tvReportIdList.context.resources.getString(
+                R.string.id_laporan,
+                report.id.toString()
+            )
 
             Glide.with(binding.imgReport.context)
                 .load(report.photo)
                 .apply(
-                    RequestOptions().override(400, 400).placeholder(ShimmerDrawableInit.shimmerDrawable)
+                    RequestOptions().override(400, 400)
+                        .placeholder(ShimmerDrawableInit.shimmerDrawable)
                         .error(R.drawable.ic_broken_image_black)
                 )
                 .into(binding.imgReport)

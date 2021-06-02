@@ -22,15 +22,29 @@
     <string name="report_picture">report_picture</string>
 
     <!-- user-->
-    <string name="images">Images</string>
     <string name="name">Name</string>
     <string name="email">email@gmail.com</string>
     <string name="logOut">Keluar</string>
 
     <!-- fragment -->
     <string name="settings">settings</string>
-    <string name="logout_confirmation">Tekan lagi untuk keluar</string>
     <string name="exit_confirmation">Tekan lagi untuk keluar</string>
     <string name="tidak_ditemukan">Tidak ditemukan.</string>
+    <string name="detail_laporan">Detail Laporan</string>
+    <string name="catatan_tambahan">Catatan Tambahan</string>
+    <string name="id_laporan_title">ID Laporan</string>
+
+    <!-- LOREM IPSUM -->
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu vel enim vehicula congue. Phasellus a convallis ante, sit amet mattis nulla. Cras malesuada feugiat lorem id malesuada. In orci est, tristique quis malesuada sit amet, vulputate sed nunc. Donec eget tortor sem. Sed eu pharetra justo, at porttitor lacus. In fringilla suscipit ligula, ac eleifend lorem volutpat quis. Maecenas laoreet, ex nec viverra tempus, lectus nulla fringilla purus, sed venenatis diam arcu at leo.
+    </string>
+    <string name="tipe_kerusakan">Tipe Kerusakan</string>
+    <string name="dummy_tipe_kerusakan">Jalanan Berlubang</string>
+    <string name="tingkat_keparahan">Tingkat Keparahan</string>
+    <string name="dummy_tingkat_keparahan">Very Poor</string>
+    <string name="tanggal_dibuat">Tanggal Dibuat</string>
+    <string name="dummy_date">2021–06–01</string>
+    <string name="image_detail">image_detail</string>
+    <string name="detail_title">Detail laporan #%1$s</string>
 
 </resources>

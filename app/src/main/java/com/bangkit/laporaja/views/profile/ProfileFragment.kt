@@ -18,7 +18,6 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var currentActivity: MainActivity
-    private var doubleClickToLogout = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +30,7 @@ class ProfileFragment : Fragment() {
         setHasOptionsMenu(true)
         val toolbar = binding.topAppBar
         currentActivity.setSupportActionBar(toolbar)
-
+        currentActivity.showBottomBar()
         return binding.root
     }
 
@@ -83,5 +82,10 @@ class ProfileFragment : Fragment() {
             startActivity(intent)
             currentActivity.destroy()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

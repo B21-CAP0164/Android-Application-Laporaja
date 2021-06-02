@@ -69,20 +69,18 @@ class HomeFragment : Fragment() {
         currentActivity.setSupportActionBar(toolbar)
         currentActivity.supportActionBar?.title = " "
 
-        lifecycleScope.launch(Dispatchers.Default) {
+        lifecycleScope.launchWhenCreated {
             viewModel.getUserReportsCount(acct?.id as String).collectLatest {
-                withContext(Dispatchers.Main) {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        binding.tvJumlah.background = null
-                        binding.tvJumlah.setTextColor(
-                            ContextCompat.getColor(
-                                requireContext(),
-                                R.color.black
-                            )
+                Handler(Looper.getMainLooper()).postDelayed({
+                    binding.tvJumlah.background = null
+                    binding.tvJumlah.setTextColor(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.black
                         )
-                        binding.tvJumlah.text = it.toString()
-                    }, 300)
-                }
+                    )
+                    binding.tvJumlah.text = it.toString()
+                }, 300)
             }
 
             viewAdapter.setOnItemClickCallback(object : HomeAdapter.OnItemClickCallback {
@@ -93,14 +91,12 @@ class HomeFragment : Fragment() {
 
             viewModel.getRecentReports().collectLatest { item ->
                 if (!item.isNullOrEmpty()) {
-                    withContext(Dispatchers.Main) {
-                        viewAdapter.setReports(item)
+                    viewAdapter.setReports(item)
 
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            binding.rvRecentReports.visibility = View.VISIBLE
-                            binding.shimmerReportHome.visibility = View.GONE
-                        }, 300)
-                    }
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        binding.rvRecentReports.visibility = View.VISIBLE
+                        binding.shimmerReportHome.visibility = View.GONE
+                    }, 300)
                 }
             }
         }
@@ -108,6 +104,12 @@ class HomeFragment : Fragment() {
         binding.cameraButton.setOnClickListener {
             showCamera()
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        currentActivity.showBottomBar()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -132,5 +134,10 @@ class HomeFragment : Fragment() {
         val toReportDetail =
             HomeFragmentDirections.actionNavigationHomeToReportDetailFragment(report)
         view?.findNavController()?.navigate(toReportDetail)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

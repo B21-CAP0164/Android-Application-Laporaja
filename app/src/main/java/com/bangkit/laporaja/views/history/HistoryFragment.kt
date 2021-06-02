@@ -34,6 +34,7 @@ class HistoryFragment : Fragment() {
         _binding = FragmentHistoryBinding.inflate(inflater, container, false)
 
         currentActivity = activity as MainActivity
+        currentActivity.showBottomBar()
         viewAdapter = HistoryAdapter()
 
         binding.rvHistory.apply {
@@ -55,7 +56,7 @@ class HistoryFragment : Fragment() {
         val account = GoogleSignIn.getLastSignedInAccount(activity)
         val userId = account?.id.toString()
 
-        lifecycleScope.launch(Dispatchers.Default) {
+        lifecycleScope.launchWhenCreated {
             viewAdapter.setOnItemClickCallback(object : HistoryAdapter.OnItemClickCallback {
                 override fun onItemClicked(data: Report) {
                     showReportDetail(data)
@@ -64,22 +65,18 @@ class HistoryFragment : Fragment() {
 
             viewModel.getUserHistory(userId).collectLatest { item ->
                 if (!item.isNullOrEmpty()) {
-                    withContext(Dispatchers.Main) {
-                        viewAdapter.setReports(item)
+                    viewAdapter.setReports(item)
 
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            binding.listEmpty.visibility = View.GONE
-                            binding.rvHistory.visibility = View.VISIBLE
-                            binding.shimmerReportHistory.visibility = View.GONE
-                        }, 300)
-                    }
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        binding.listEmpty.visibility = View.GONE
+                        binding.rvHistory.visibility = View.VISIBLE
+                        binding.shimmerReportHistory.visibility = View.GONE
+                    }, 300)
                 } else {
-                    withContext(Dispatchers.Main) {
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            binding.listEmpty.visibility = View.VISIBLE
-                            binding.shimmerReportHistory.visibility = View.GONE
-                        }, 300)
-                    }
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        binding.listEmpty.visibility = View.VISIBLE
+                        binding.shimmerReportHistory.visibility = View.GONE
+                    }, 300)
                 }
             }
         }
@@ -101,5 +98,10 @@ class HistoryFragment : Fragment() {
         val toReportDetail =
             HistoryFragmentDirections.actionNavigationHistoryToReportDetailFragment(report)
         view?.findNavController()?.navigate(toReportDetail)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

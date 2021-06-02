@@ -12,13 +12,25 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_navigation_camera"
-            app:destination="@id/navigation_camera" />
+            app:destination="@id/navigation_camera"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_history"
-            app:destination="@id/navigation_history" />
+            app:destination="@id/navigation_history"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_profile"
-            app:destination="@id/navigation_profile" />
+            app:destination="@id/navigation_profile"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_navigation_home_to_reportDetailFragment"
             app:destination="@id/reportDetailFragment"
@@ -60,8 +72,7 @@
         tools:layout="@layout/report_detail_fragment" >
         <argument
             android:name="report"
-            app:argType="com.bangkit.laporaja.data.entity.Report"
-            app:nullable="true" />
+            app:argType="com.bangkit.laporaja.data.entity.Report" />
     </fragment>
 
 </navigation>

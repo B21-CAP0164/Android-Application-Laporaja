@@ -23,5 +23,5 @@ interface ApiService {
         @Path("id") id: String,
         @Path("report_id") reportId: Long,
         @Query("format") format: String
-    ): List<ReportResponseItem>
+    ): ReportResponseItem
 }
