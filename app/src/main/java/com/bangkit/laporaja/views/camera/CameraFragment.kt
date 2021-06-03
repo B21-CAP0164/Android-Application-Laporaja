@@ -2,6 +2,7 @@ package com.bangkit.laporaja.views.camera
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -20,12 +21,9 @@ import androidx.core.content.ContextCompat
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.databinding.FragmentCameraBinding
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-
-typealias LumaListener = (luma: Double) -> Unit
 
 class CameraFragment : Fragment() {
     private var _binding: FragmentCameraBinding? = null
@@ -40,7 +38,11 @@ class CameraFragment : Fragment() {
         private const val TAG = "CameraXBasic"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
+        private val REQUIRED_PERMISSIONS = arrayOf(
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
     }
 
     override fun onCreateView(
@@ -48,11 +50,11 @@ class CameraFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentCameraBinding.inflate(inflater, container, false)
         currentActivity = activity as MainActivity
 
         if (allPermissionsGranted()) {
+            Toast.makeText(currentActivity, "Permisison Accepted", Toast.LENGTH_SHORT).show()
             startCamera()
         } else {
             ActivityCompat.requestPermissions(
@@ -73,12 +75,32 @@ class CameraFragment : Fragment() {
         currentActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.cameraButton.setOnClickListener {
-            Log.d("item","clicked")
+            Log.d("item", "Item CLicked")
             takePhoto()
         }
+
         outputDirectory = currentActivity.getOutputDirectory()
 
         cameraExecutor = Executors.newSingleThreadExecutor()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults:
+        IntArray
+    ) {
+        if (requestCode == REQUEST_CODE_PERMISSIONS) {
+            if (allPermissionsGranted()) {
+                Log.d("permission", "Permission Accepted")
+                startCamera()
+            } else {
+                Toast.makeText(
+                    currentActivity,
+                    "Permissions not granted by the user.",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+        }
     }
 
     private fun takePhoto() {
@@ -87,25 +109,24 @@ class CameraFragment : Fragment() {
         val photoFile = File(
             outputDirectory,
             SimpleDateFormat(
-                FILENAME_FORMAT, Locale.US
-            ).format(System.currentTimeMillis()) + ".jpg"
-        )
+                FILENAME_FORMAT,
+                Locale.getDefault()
+            ).format(System.currentTimeMillis()) + ".jpg")
 
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
         imageCapture.takePicture(
-            outputOptions,
-            ContextCompat.getMainExecutor(currentActivity),
+            outputOptions, ContextCompat.getMainExecutor(currentActivity),
             object : ImageCapture.OnImageSavedCallback {
-                override fun onError(exc: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
-                }
-
-                override fun onImageSaved(output: ImageCapture.OutputFileResults) {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
                     val msg = "Photo capture succeeded: $savedUri"
                     Toast.makeText(currentActivity, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    Log.e(TAG, "Photo capture failed: ${exception.message}", exception)
                 }
             })
     }
@@ -122,19 +143,19 @@ class CameraFragment : Fragment() {
                     it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                 }
 
+            imageCapture = ImageCapture.Builder()
+                .build()
+
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
             try {
                 cameraProvider.unbindAll()
-
                 cameraProvider.bindToLifecycle(
-                    this, cameraSelector, preview
+                    currentActivity, cameraSelector, preview, imageCapture
                 )
-
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
             }
-
         }, ContextCompat.getMainExecutor(currentActivity))
     }
 
