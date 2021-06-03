@@ -97,8 +97,20 @@
             android:name="filePost"
             app:argType="string"/>
         <action
-            android:id="@+id/action_PostFragment_to_reportDetailFragment"
+            android:id="@+id/action_PostFragment_to_sendDataFragment"
+            app:destination="@id/sendDataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendDataFragment"
+        android:name="com.bangkit.laporaja.views.send.SendDataFragment"
+        android:label="send_data_fragment"
+        tools:layout="@layout/send_data_fragment" >
+        <action
+            android:id="@+id/action_sendDataFragment_to_reportDetailFragment"
             app:destination="@id/reportDetailFragment" />
+        <argument
+            android:name="model"
+            app:argType="com.bangkit.laporaja.data.entity.Report" />
     </fragment>
 
 </navigation>
