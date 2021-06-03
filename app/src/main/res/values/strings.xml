@@ -46,5 +46,7 @@
     <string name="dummy_date">2021–06–01</string>
     <string name="image_detail">image_detail</string>
     <string name="detail_title">Detail laporan #%1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

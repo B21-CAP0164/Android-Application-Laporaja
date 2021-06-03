@@ -64,7 +64,15 @@
         android:id="@+id/navigation_camera"
         android:name="com.bangkit.laporaja.views.camera.CameraFragment"
         android:label="@string/title_camera"
-        tools:layout="@layout/fragment_camera"/>
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_navigation_camera_to_PostFragment"
+            app:destination="@id/PostFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/reportDetailFragment"
         android:name="com.bangkit.laporaja.views.detail.ReportDetailFragment"
@@ -74,5 +82,12 @@
             android:name="report"
             app:argType="com.bangkit.laporaja.data.entity.Report" />
     </fragment>
+
+    <fragment
+        android:id="@+id/PostFragment"
+        android:name="com.bangkit.laporaja.views.post.PostFragment"
+        android:label="post_fragment"
+        tools:layout="@layout/fragment_post"
+        />
 
 </navigation>

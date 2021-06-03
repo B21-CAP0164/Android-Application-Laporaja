@@ -18,8 +18,10 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.databinding.FragmentCameraBinding
+import com.bangkit.laporaja.views.home.HomeFragmentDirections
 import java.io.File
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -90,7 +92,6 @@ class CameraFragment : Fragment() {
     ) {
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
             if (allPermissionsGranted()) {
-                Log.d("permission", "Permission Accepted")
                 startCamera()
             } else {
                 Toast.makeText(
@@ -122,6 +123,7 @@ class CameraFragment : Fragment() {
                     val savedUri = Uri.fromFile(photoFile)
                     val msg = "Photo capture succeeded: $savedUri"
                     Toast.makeText(currentActivity, msg, Toast.LENGTH_SHORT).show()
+                    goToPost()
                     Log.d(TAG, msg)
                 }
 
@@ -129,6 +131,11 @@ class CameraFragment : Fragment() {
                     Log.e(TAG, "Photo capture failed: ${exception.message}", exception)
                 }
             })
+    }
+
+    private fun goToPost(){
+        val toPost = CameraFragmentDirections.actionNavigationCameraToPostFragment()
+        view?.findNavController()?.navigate(toPost)
     }
 
     private fun startCamera() {
