@@ -16,10 +16,7 @@ import com.bangkit.laporaja.databinding.FragmentHomeBinding
 import com.bangkit.laporaja.utils.ShimmerDrawableInit
 import com.bangkit.laporaja.viewmodels.HomeViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {

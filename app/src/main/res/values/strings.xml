@@ -5,6 +5,7 @@
     <string name="title_history">History</string>
     <string name="title_profile">Profilmu</string>
     <string name="title_camera">Camera</string>
+    <string name="kirim">Kirim</string>
 
     <!-- home text -->
     <string name="hello_string">Halo, %1$s!</string>
