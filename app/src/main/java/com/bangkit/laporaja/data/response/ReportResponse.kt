@@ -2,16 +2,13 @@ package com.bangkit.laporaja.data.response
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ReportResponseItem(
 
 	@field:SerializedName("image")
 	val image: String? = null,
-
-	@field:SerializedName("damage_type")
-	val damageType: String? = null,
 
 	@field:SerializedName("location_name")
 	val locationName: String? = null,

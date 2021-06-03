@@ -12,7 +12,6 @@ data class Report (
     val latitude: Float? = null,
     val longitude: Float? = null,
     val description: String? = null,
-    val damageType: String? = null,
     val damageSeverity: String? = null,
     val date: String? = null
 ) : Parcelable

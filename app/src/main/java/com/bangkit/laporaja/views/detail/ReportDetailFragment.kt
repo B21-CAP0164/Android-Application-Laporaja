@@ -84,7 +84,6 @@ class ReportDetailFragment : Fragment() {
         binding.tvIdDetail.text = resources.getString(R.string.id_laporan, report.id.toString())
         binding.tvLocation.text = report.location
         binding.tvNotes.text = report.description
-        binding.tvTipeKerusakan.text = report.damageType
         binding.tvTingkatKeparahan.text = report.damageSeverity
         binding.tvCreatedAt.text = report.date
 

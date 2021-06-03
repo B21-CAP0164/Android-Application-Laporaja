@@ -22,7 +22,6 @@ object DataMapper {
         latitude = it.lat?.toFloat(),
         longitude = it.lon?.toFloat(),
         description = it.notes,
-        damageType = it.damageType,
         damageSeverity = it.damageSeverity,
         date = it.createdAt
     )
