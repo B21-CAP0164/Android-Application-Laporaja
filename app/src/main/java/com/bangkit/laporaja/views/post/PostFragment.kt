@@ -81,7 +81,11 @@ class PostFragment : Fragment() {
                 date = todayString
             )
 
-            Log.d("BASE 64", currentReport.photo.toString())
+            Log.d("Country : ",args.country)
+            Log.d("Province : ",args.province)
+            Log.d("City : ",args.city)
+            Log.d("Region : ",args.region)
+//            Log.d("BASE 64", currentReport.photo.toString())
         }
 
         binding.btnKirim.setOnClickListener {

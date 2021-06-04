@@ -3,10 +3,12 @@ package com.bangkit.laporaja.views.camera
 import android.Manifest
 import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,10 +20,14 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.databinding.FragmentCameraBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import java.io.File
+import java.io.IOException
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -32,8 +38,12 @@ class CameraFragment : Fragment() {
     private lateinit var currentActivity: MainActivity
 
     private var imageCapture: ImageCapture? = null
+    private var latitude: Double? = null
+    private var longitude: Double? = null
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     companion object {
         private const val TAG = "CameraXBasic"
@@ -42,7 +52,8 @@ class CameraFragment : Fragment() {
         private val REQUIRED_PERMISSIONS = arrayOf(
             Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION
         )
     }
 
@@ -54,8 +65,11 @@ class CameraFragment : Fragment() {
         _binding = FragmentCameraBinding.inflate(inflater, container, false)
         currentActivity = activity as MainActivity
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(currentActivity)
+
         if (allPermissionsGranted()) {
             startCamera()
+            getLocation()
         } else {
             ActivityCompat.requestPermissions(
                 currentActivity, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
@@ -75,7 +89,6 @@ class CameraFragment : Fragment() {
         currentActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.cameraButton.setOnClickListener {
-            Log.d("item", "Item CLicked")
             takePhoto()
         }
 
@@ -97,42 +110,93 @@ class CameraFragment : Fragment() {
                     "Permissions not granted by the user.",
                     Toast.LENGTH_SHORT
                 ).show()
-
             }
         }
     }
 
     private fun takePhoto() {
-        val imageCapture = imageCapture ?: return
+        val geocoder = Geocoder(currentActivity, Locale.getDefault())
+        try {
+            val addresses: List<Address> = geocoder.getFromLocation(latitude!!, longitude!!, 1)
+            val obj: Address = addresses[0]
 
-        val photoFile = File(
-            outputDirectory,
-            SimpleDateFormat(
-                FILENAME_FORMAT,
-                Locale.getDefault()
-            ).format(System.currentTimeMillis()) + ".jpg")
+            val imageCapture = imageCapture ?: return
 
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+            val photoFile = File(
+                outputDirectory,
+                SimpleDateFormat(
+                    FILENAME_FORMAT,
+                    Locale.getDefault()
+                ).format(System.currentTimeMillis()) + ".jpg"
+            )
 
-        imageCapture.takePicture(
-            outputOptions, ContextCompat.getMainExecutor(currentActivity),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    val savedUri = Uri.fromFile(photoFile)
-                    val msg = "Photo capture succeeded: $savedUri"
-                    goToPost(savedUri)
-                    Log.d(TAG, msg)
-                }
+            val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-                override fun onError(exception: ImageCaptureException) {
-                    Log.e(TAG, "Photo capture failed: ${exception.message}", exception)
-                }
-            })
+            imageCapture.takePicture(
+                outputOptions, ContextCompat.getMainExecutor(currentActivity),
+                object : ImageCapture.OnImageSavedCallback {
+                    override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                        val savedUri = Uri.fromFile(photoFile)
+                        val msg = "Photo capture succeeded: $savedUri"
+                        goToPost(
+                            savedUri,
+                            obj.countryName,
+                            obj.adminArea,
+                            obj.subAdminArea,
+                            obj.locality
+                        )
+                        Log.d(TAG, msg)
+                    }
+
+                    override fun onError(exception: ImageCaptureException) {
+                        Log.e(TAG, "Photo capture failed: ${exception.message}", exception)
+                    }
+                })
+
+        } catch (e: IOException) {
+            Log.e(TAG, "Faild :  ${e.message}", e)
+        }
     }
 
-    private fun goToPost(uriFile: Uri){
+    private fun getLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                currentActivity,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                currentActivity,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            Toast.makeText(
+                currentActivity,
+                "Permissions not granted by the user.",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                latitude = location?.latitude
+                longitude = location?.longitude
+            }
+    }
+
+    private fun goToPost(
+        uriFile: Uri,
+        country: String,
+        province: String,
+        city: String,
+        region: String
+    ) {
         val uri = uriFile.toString()
-        val toPost = CameraFragmentDirections.actionNavigationCameraToPostFragment(uri)
+        val toPost = CameraFragmentDirections.actionNavigationCameraToPostFragment(
+            uri,
+            country,
+            province,
+            city,
+            region
+        )
         view?.findNavController()?.navigate(toPost)
     }
 
