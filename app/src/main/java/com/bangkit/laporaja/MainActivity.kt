@@ -8,11 +8,15 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bangkit.laporaja.databinding.ActivityMainBinding
+import com.bangkit.laporaja.views.detail.ReportDetailFragment
+import com.bangkit.laporaja.views.detail.ReportDetailFragmentDirections
 import com.bangkit.laporaja.views.login.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
     private var doubleBackToExitOnce: Boolean = false
+    private var isGoingToHome: Boolean = false
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navView: BottomNavigationView
 
@@ -97,9 +102,22 @@ class MainActivity : AppCompatActivity() {
                 kotlin.run { doubleBackToExitOnce = false }
             }, 2000)
         } else {
-            super.onBackPressed()
-            return
+            if (isGoingToHome) {
+                val currentFragment = navHostFragment.childFragmentManager.fragments[0]
+                if (currentFragment == navHostFragment.childFragmentManager.findFragmentById(R.id.reportDetailFragment)) {
+                    val detailFragment = currentFragment as ReportDetailFragment
+                    val toHome = ReportDetailFragmentDirections.actionReportDetailFragmentToNavigationHome()
+                    detailFragment.findNavController().navigate(toHome)
+                }
+            } else {
+                super.onBackPressed()
+                return
+            }
         }
+    }
+
+    fun popToHome() {
+        isGoingToHome = true
     }
 
     override fun onDestroy() {

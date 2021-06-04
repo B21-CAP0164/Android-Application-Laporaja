@@ -53,5 +53,6 @@
     <string name="detail_title">Detail laporan #%1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mengirim_data">Mengirim Data</string>
 
 </resources>

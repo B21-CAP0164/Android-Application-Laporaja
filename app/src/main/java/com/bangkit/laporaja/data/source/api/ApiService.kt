@@ -1,6 +1,9 @@
 package com.bangkit.laporaja.data.source.api
 
-import com.bangkit.laporaja.data.post.Response
+import com.bangkit.laporaja.data.post.DataInputPost
+import com.bangkit.laporaja.data.post.PredictionPost
+import com.bangkit.laporaja.data.response.InsertResponse
+import com.bangkit.laporaja.data.response.PredictionResponse
 import com.bangkit.laporaja.data.response.ReportListResponseItem
 import com.bangkit.laporaja.data.response.ReportResponseItem
 import retrofit2.http.*
@@ -26,6 +29,12 @@ interface ApiService {
 
     @POST("https://ml.googleapis.com/v1/projects/gold-order-314913/models/laporaja_model/versions/v1modelkeras:predict")
     suspend fun postImageReturnPrediction(
-        @Body data : Response
-    )
+        @Body data: PredictionPost
+    ): PredictionResponse
+
+    @POST("report/{id}/add")
+    suspend fun postDataToCloud(
+        @Body data: DataInputPost,
+        @Path("id") id: String?
+    ): InsertResponse
 }

@@ -1,6 +1,7 @@
 package com.bangkit.laporaja.utils
 
 import com.bangkit.laporaja.data.entity.Report
+import com.bangkit.laporaja.data.post.DataInputPost
 import com.bangkit.laporaja.data.response.ReportListResponseItem
 import com.bangkit.laporaja.data.response.ReportResponseItem
 
@@ -24,5 +25,14 @@ object DataMapper {
         description = it.notes,
         damageSeverity = it.damageSeverity,
         date = it.createdAt
+    )
+
+    fun mapReportToDataInput(it: Report) = DataInputPost(
+        locationString = it.location,
+        lat = it.latitude,
+        lon = it.longitude,
+        image = it.photo,
+        notes = it.description,
+        damageSeverity = it.damageSeverity
     )
 }

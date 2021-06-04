@@ -98,6 +98,16 @@
         <argument
             android:name="report"
             app:argType="com.bangkit.laporaja.data.entity.Report" />
+        <argument
+            android:name="isGoingBackToHome"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <action
+            android:id="@+id/action_reportDetailFragment_to_navigation_home"
+            app:destination="@id/navigation_home"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -122,7 +132,17 @@
             app:argType="string"/>
         <action
             android:id="@+id/action_PostFragment_to_sendDataFragment"
-            app:destination="@id/sendDataFragment" />
+            app:destination="@id/sendDataFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <argument
+            android:name="latitude"
+            app:argType="float" />
+        <argument
+            android:name="longitude"
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/sendDataFragment"
@@ -131,7 +151,14 @@
         tools:layout="@layout/send_data_fragment" >
         <action
             android:id="@+id/action_sendDataFragment_to_reportDetailFragment"
-            app:destination="@id/reportDetailFragment" />
+            app:destination="@id/reportDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/reportDetailFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="model"
             app:argType="com.bangkit.laporaja.data.entity.Report" />

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Response(
+data class PredictionPost(
 	@field:SerializedName("instances")
 	val instances: List<InstancesItem?>? = null
 ) : Parcelable

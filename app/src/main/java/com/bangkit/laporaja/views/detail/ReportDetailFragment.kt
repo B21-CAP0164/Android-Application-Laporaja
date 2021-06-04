@@ -35,13 +35,16 @@ class ReportDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = ReportDetailFragmentBinding.inflate(inflater, container, false)
+        currentActivity = activity as MainActivity
 
         lifecycleScope.launchWhenCreated {
             val args: ReportDetailFragmentArgs by navArgs()
+            if (args.isGoingBackToHome) {
+                currentActivity.popToHome()
+            }
             currentReport = args.report
         }
 
-        currentActivity = activity as MainActivity
         currentActivity.removeBottomBar()
 
         return binding.root

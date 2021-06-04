@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.data.entity.Report
@@ -28,7 +29,6 @@ class PostFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var currentActivity: MainActivity
     private lateinit var currentReport: Report
-
     private val args: PostFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -38,7 +38,6 @@ class PostFragment : Fragment() {
         _binding = FragmentPostBinding.inflate(inflater, container, false)
 
         currentActivity = activity as MainActivity
-        currentActivity.removeBottomBar()
 
         return binding.root
     }
@@ -78,18 +77,22 @@ class PostFragment : Fragment() {
                 userId = GoogleSignIn.getLastSignedInAccount(activity)?.id,
                 photo = base64,
                 description = notes,
-                date = todayString
+                date = todayString,
+                location = "${args.city}, ${args.province}",
+                latitude = args.latitude,
+                longitude = args.longitude
             )
 
-            Log.d("Country : ",args.country)
-            Log.d("Province : ",args.province)
-            Log.d("City : ",args.city)
-            Log.d("Region : ",args.region)
-//            Log.d("BASE 64", currentReport.photo.toString())
+            Log.d("Country : ", args.country)
+            Log.d("Province : ", args.province)
+            Log.d("City : ", args.city)
+            Log.d("Region : ", args.region)
         }
 
         binding.btnKirim.setOnClickListener {
-
+            val toSendData =
+                PostFragmentDirections.actionPostFragmentToSendDataFragment(currentReport)
+            view.findNavController().navigate(toSendData)
         }
     }
 }

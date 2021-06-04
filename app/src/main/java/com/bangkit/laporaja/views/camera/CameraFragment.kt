@@ -143,7 +143,9 @@ class CameraFragment : Fragment() {
                             obj.countryName,
                             obj.adminArea,
                             obj.subAdminArea,
-                            obj.locality
+                            obj.locality,
+                            obj.latitude.toFloat(),
+                            obj.longitude.toFloat()
                         )
                         Log.d(TAG, msg)
                     }
@@ -154,7 +156,7 @@ class CameraFragment : Fragment() {
                 })
 
         } catch (e: IOException) {
-            Log.e(TAG, "Faild :  ${e.message}", e)
+            Log.e(TAG, "Failed :  ${e.message}", e)
         }
     }
 
@@ -187,7 +189,9 @@ class CameraFragment : Fragment() {
         country: String,
         province: String,
         city: String,
-        region: String
+        region: String,
+        latitude: Float,
+        longitude: Float
     ) {
         val uri = uriFile.toString()
         val toPost = CameraFragmentDirections.actionNavigationCameraToPostFragment(
@@ -195,7 +199,9 @@ class CameraFragment : Fragment() {
             country,
             province,
             city,
-            region
+            region,
+            latitude,
+            longitude
         )
         view?.findNavController()?.navigate(toPost)
     }
