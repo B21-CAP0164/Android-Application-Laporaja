@@ -6,6 +6,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.R
 import com.bangkit.laporaja.databinding.FragmentProfileBinding
@@ -66,7 +67,8 @@ class ProfileFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.setting_menu) {
-
+            val toSetting = ProfileFragmentDirections.actionNavigationProfileToSettingsFragment()
+            view?.findNavController()?.navigate(toSetting)
         }
         return super.onOptionsItemSelected(item)
     }

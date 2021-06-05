@@ -1,15 +1,19 @@
 <resources>
     <string name="app_name">Laporaja</string>
     <!-- menu -->
-    <string name="title_home">Home</string>
-    <string name="title_history">History</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_history">Riwayat</string>
     <string name="title_profile">Profilmu</string>
-    <string name="title_camera">Camera</string>
-    
+    <string name="title_camera">Kamera</string>
+
+    <!-- camera-->
+    <string name="subHedingCamera">Ambil Gambar Kerusakan</string>
+    <string name="info">Ambil gambar kerusakan jalan dengan memastikan kerusakan yang dimaksud didalam frame.</string>
+
     <!-- post-->
     <string name="kirim">Kirim</string>
-    <string name="notes">Notes</string>
-    <string name="location">Location</string>
+    <string name="notes">Catatan</string>
+    <string name="location">Lokasi</string>
 
     <!-- home text -->
     <string name="hello_string">Halo, %1$s!</string>
@@ -27,12 +31,12 @@
     <string name="report_picture">report_picture</string>
 
     <!-- user-->
-    <string name="name">Name</string>
+    <string name="name">Nama</string>
     <string name="email">email@gmail.com</string>
     <string name="logOut">Keluar</string>
 
     <!-- fragment -->
-    <string name="settings">settings</string>
+    <string name="settings">pengaturan</string>
     <string name="exit_confirmation">Tekan lagi untuk keluar</string>
     <string name="tidak_ditemukan">Tidak ditemukan.</string>
     <string name="detail_laporan">Detail Laporan</string>
@@ -55,4 +59,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mengirim_data">Mengirim Data</string>
 
+    <!-- Setting -->
+    <string name="messages_header">Messages</string>
+    <string name="bahasa">Ganti Bahasa</string>
+    <string name="reply_title">Default reply action</string>
 </resources>

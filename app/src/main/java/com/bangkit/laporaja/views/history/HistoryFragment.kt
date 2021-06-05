@@ -14,10 +14,7 @@ import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.databinding.FragmentHistoryBinding
 import com.bangkit.laporaja.viewmodels.HistoryViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : Fragment() {
@@ -89,7 +86,8 @@ class HistoryFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.setting_menu) {
-
+            val toSetting = HistoryFragmentDirections.actionNavigationHistoryToSettingsFragment()
+            view?.findNavController()?.navigate(toSetting)
         }
         return super.onOptionsItemSelected(item)
     }
