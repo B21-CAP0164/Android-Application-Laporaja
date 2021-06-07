@@ -1,17 +1,12 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <EditTextPreference
-        app:key="signature"
-        app:title="@string/bahasa"
-        app:useSimpleSummaryProvider="true"
-        app:defaultValue="reply"/>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ListPreference
-        app:defaultValue="reply"
+        app:defaultValue="ID"
         app:entries="@array/reply_entries"
         app:entryValues="@array/reply_values"
-        app:key="reply"
-        app:title="@string/reply_title"
-        app:useSimpleSummaryProvider="true" />
+        app:key="language"
+        app:title="@string/bahasa"
+        app:useSimpleSummaryProvider="true"/>
 
 </PreferenceScreen>

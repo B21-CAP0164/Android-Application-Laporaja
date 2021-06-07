@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">Laporaja</string>
+    <!-- menu -->
+    <string name="title_home">Home</string>
+    <string name="title_history">History</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_camera">Camera</string>
+
+    <!-- camera-->
+    <string name="subHedingCamera">Take Damage Picture</string>
+    <string name="info">Take pictures of road damage by confirming the damage referred to in the frame.</string>
+
+    <!-- post-->
+    <string name="kirim">Send</string>
+    <string name="notes">Note</string>
+    <string name="location">Location</string>
+
+    <!-- home text -->
+    <string name="hello_string">Halo, %1$s!</string>
+    <string name="laporan">Report</string>
+    <string name="dummy_value">10</string>
+    <string name="laporan_btn">Create Report</string>
+    <string name="history_laporan">News Report</string>
+
+    <!-- History-->
+    <string name="laporan_anda">All Reports</string>
+    <string name="dummy_id">#1022</string>
+    <string name="id_laporan">#%1$s</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="dummy_location">Cikarang, Jawa Barat</string>
+    <string name="report_picture">report_picture</string>
+
+    <!-- user-->
+    <string name="name">Name</string>
+    <string name="email">email@gmail.com</string>
+    <string name="logOut">Exit</string>
+
+    <!-- fragment -->
+    <string name="settings">Setting</string>
+    <string name="exit_confirmation">Press again to exit</string>
+    <string name="tidak_ditemukan">Not Found</string>
+    <string name="detail_laporan">Report Detail</string>
+    <string name="catatan_tambahan">Postscript</string>
+    <string name="id_laporan_title">Report ID</string>
+
+    <!-- LOREM IPSUM -->
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu vel enim vehicula congue. Phasellus a convallis ante, sit amet mattis nulla. Cras malesuada feugiat lorem id malesuada. In orci est, tristique quis malesuada sit amet, vulputate sed nunc. Donec eget tortor sem. Sed eu pharetra justo, at porttitor lacus. In fringilla suscipit ligula, ac eleifend lorem volutpat quis. Maecenas laoreet, ex nec viverra tempus, lectus nulla fringilla purus, sed venenatis diam arcu at leo.
+    </string>
+    <string name="tipe_kerusakan">Damage Type</string>
+    <string name="dummy_tipe_kerusakan">Jalanan Berlubang</string>
+    <string name="tingkat_keparahan">Severity</string>
+    <string name="dummy_tingkat_keparahan">Very Poor</string>
+    <string name="tanggal_dibuat">Date Created</string>
+    <string name="dummy_date">2021–06–01</string>
+    <string name="image_detail">image_detail</string>
+    <string name="detail_title">Report details #%1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mengirim_data">Sending Data</string>
+
+    <!-- Setting -->
+    <string name="messages_header">Messages</string>
+    <string name="bahasa">Change language</string>
+    <string name="reply_title">Default reply action</string>
+</resources>
