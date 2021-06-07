@@ -27,14 +27,15 @@ interface ApiService {
         @Query("format") format: String
     ): ReportResponseItem
 
-    @POST("https://ml.googleapis.com/v1/projects/gold-order-314913/models/laporaja_model/versions/v1modelkeras:predict")
+    @POST("https://model-service-56uqspea3a-uc.a.run.app/predict")
     suspend fun postImageReturnPrediction(
         @Body data: PredictionPost
     ): PredictionResponse
 
-    @POST("report/{id}/add")
+    @POST("report/{id}/add/")
     suspend fun postDataToCloud(
         @Body data: DataInputPost,
-        @Path("id") id: String?
+        @Path("id") id: String?,
+        @Query("format") format: String
     ): InsertResponse
 }

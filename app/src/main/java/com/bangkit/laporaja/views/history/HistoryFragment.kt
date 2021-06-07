@@ -94,7 +94,7 @@ class HistoryFragment : Fragment() {
 
     private fun showReportDetail(report: Report) {
         val toReportDetail =
-            HistoryFragmentDirections.actionNavigationHistoryToReportDetailFragment(report)
+            HistoryFragmentDirections.actionNavigationHistoryToReportDetailFragment(report, false)
         view?.findNavController()?.navigate(toReportDetail)
     }
 

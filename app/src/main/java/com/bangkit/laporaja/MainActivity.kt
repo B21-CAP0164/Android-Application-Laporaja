@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -102,14 +103,15 @@ class MainActivity : AppCompatActivity() {
                 kotlin.run { doubleBackToExitOnce = false }
             }, 2000)
         } else {
+            Log.d("Current isGoingToHome", isGoingToHome.toString())
             if (isGoingToHome) {
                 val currentFragment = navHostFragment.childFragmentManager.fragments[0]
-                if (currentFragment == navHostFragment.childFragmentManager.findFragmentById(R.id.reportDetailFragment)) {
-                    val detailFragment = currentFragment as ReportDetailFragment
-                    val toHome =
-                        ReportDetailFragmentDirections.actionReportDetailFragmentToNavigationHome()
-                    detailFragment.findNavController().navigate(toHome)
-                }
+                Log.d("Masuk", "Report Detail Fragment")
+                val detailFragment = currentFragment as ReportDetailFragment
+                val toHome =
+                    ReportDetailFragmentDirections.actionReportDetailFragmentToNavigationHome()
+                detailFragment.findNavController().navigate(toHome)
+                isGoingToHome = false
             } else {
                 super.onBackPressed()
                 return

@@ -2,7 +2,6 @@ package com.bangkit.laporaja.data.source
 
 import android.util.Log
 import com.bangkit.laporaja.data.entity.Report
-import com.bangkit.laporaja.data.post.InstancesItem
 import com.bangkit.laporaja.data.post.PredictionPost
 import com.bangkit.laporaja.data.response.PredictionResponse
 import com.bangkit.laporaja.data.response.ReportListResponseItem
@@ -55,15 +54,14 @@ class RemoteDataSource(private val api: ApiService) {
     }
 
     fun sendDataToPredict(base64: String): Flow<PredictionResponse> = flow {
-        val list = arrayListOf(InstancesItem(base64))
-        val data = PredictionPost(list)
+        val data = PredictionPost(base64)
         val response = api.postImageReturnPrediction(data)
 
         if (response.error == null) {
             emit(response)
         } else {
             val errorPred = PredictionResponse(
-                predictions = "error",
+                prediction = "error",
                 error = response.error
             )
 
@@ -76,9 +74,12 @@ class RemoteDataSource(private val api: ApiService) {
 
     fun sendDataToCloud(data: Report, id: String): Flow<Long> = flow {
         val input = DataMapper.mapReportToDataInput(data)
-        val response = api.postDataToCloud(input, id)
+        Log.d("Input", input.toString())
+        val response = api.postDataToCloud(input, id, format)
 
         emit(response.id)
+    }.catch { e ->
+        logError(e, "SendDataToCloud")
     }
 
     private fun logError(e: Any, note: String) {

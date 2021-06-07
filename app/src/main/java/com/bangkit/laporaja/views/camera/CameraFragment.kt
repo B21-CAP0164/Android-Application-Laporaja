@@ -9,6 +9,7 @@ import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.util.Size
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -130,7 +131,8 @@ class CameraFragment : Fragment() {
                 ).format(System.currentTimeMillis()) + ".jpg"
             )
 
-            val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+            val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile)
+                .build()
 
             imageCapture.takePicture(
                 outputOptions, ContextCompat.getMainExecutor(currentActivity),
@@ -219,6 +221,8 @@ class CameraFragment : Fragment() {
                 }
 
             imageCapture = ImageCapture.Builder()
+                .setFlashMode(ImageCapture.FLASH_MODE_AUTO)
+                .setTargetResolution(Size(200, 200))
                 .build()
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA

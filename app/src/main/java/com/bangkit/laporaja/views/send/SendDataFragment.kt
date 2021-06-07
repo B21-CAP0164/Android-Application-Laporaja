@@ -1,6 +1,7 @@
 package com.bangkit.laporaja.views.send
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +51,7 @@ class SendDataFragment : Fragment() {
             model.photo?.let {
                 viewModel.sendDataToPredict(it).collectLatest { result ->
                     if (result.error == null) { // No error
+                        Log.d("Prediction", result.prediction.toString())
                         val report = Report(
                             id = null,
                             userId = model.userId,
@@ -59,29 +61,27 @@ class SendDataFragment : Fragment() {
                             location = model.location,
                             latitude = model.latitude,
                             longitude = model.longitude,
-                            damageSeverity = result.predictions
+                            damageSeverity = result.prediction
                         )
-
-                        withContext(Dispatchers.Default) {
-                            viewModel.sendDataToCloud(report).collectLatest { id ->
-                                if (id != 0L) {
-                                    val curReport = Report(id = id, userId = report.userId)
-                                    withContext(Dispatchers.Main) {
-                                        val toDetail =
-                                            SendDataFragmentDirections.actionSendDataFragmentToReportDetailFragment(
-                                                curReport,
-                                                true
-                                            )
-                                        view.findNavController().navigate(toDetail)
-                                    }
-                                } else {
-                                    withContext(Dispatchers.Main) {
-                                        Toast.makeText(
-                                            activity,
-                                            "Data gagal dikirim ke server. Cek kembali koneksi anda.",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
+                        Log.d("ID", report.userId.toString())
+                        viewModel.sendDataToCloud(report).collectLatest { id ->
+                            if (id != 0L) {
+                                val curReport = Report(id = id, userId = report.userId)
+                                withContext(Dispatchers.Main) {
+                                    val toDetail =
+                                        SendDataFragmentDirections.actionSendDataFragmentToReportDetailFragment(
+                                            curReport,
+                                            true
+                                        )
+                                    view.findNavController().navigate(toDetail)
+                                }
+                            } else {
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(
+                                        activity,
+                                        "Data gagal dikirim ke server. Cek kembali koneksi anda.",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             }
                         }

@@ -130,7 +130,7 @@ class HomeFragment : Fragment() {
 
     private fun showReportDetail(report: Report) {
         val toReportDetail =
-            HomeFragmentDirections.actionNavigationHomeToReportDetailFragment(report)
+            HomeFragmentDirections.actionNavigationHomeToReportDetailFragment(report, false)
         view?.findNavController()?.navigate(toReportDetail)
     }
 

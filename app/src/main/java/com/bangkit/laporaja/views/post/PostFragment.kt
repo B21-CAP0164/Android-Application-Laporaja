@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
@@ -53,46 +54,52 @@ class PostFragment : Fragment() {
             .load(args.filePost)
             .into(binding.imagePreview)
 
-        val notes = binding.notesInput.editText?.text.toString()
-
         Log.d("FILEPATH", args.filePost)
 
-        lifecycleScope.launch(Dispatchers.IO) {
-            val bitmap = MediaStore.Images.Media.getBitmap(
-                currentActivity.contentResolver,
-                args.filePost.toUri()
-            )
-            val stream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream)
-            val byteArrayImage = stream.toByteArray()
-
-            val base64 = Base64.encodeToString(byteArrayImage, Base64.DEFAULT)
-
-            val todayDate: Date = Calendar.getInstance().getTime()
-            val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
-            val todayString: String = formatter.format(todayDate)
-
-            currentReport = Report(
-                id = null,
-                userId = GoogleSignIn.getLastSignedInAccount(activity)?.id,
-                photo = base64,
-                description = notes,
-                date = todayString,
-                location = "${args.city}, ${args.province}",
-                latitude = args.latitude,
-                longitude = args.longitude
-            )
-
-            Log.d("Country : ", args.country)
-            Log.d("Province : ", args.province)
-            Log.d("City : ", args.city)
-            Log.d("Region : ", args.region)
-        }
-
         binding.btnKirim.setOnClickListener {
-            val toSendData =
-                PostFragmentDirections.actionPostFragmentToSendDataFragment(currentReport)
-            view.findNavController().navigate(toSendData)
+            lifecycleScope.launch(Dispatchers.Default) {
+                prepareData()
+                withContext(Dispatchers.Main) {
+                    val toSendData =
+                        PostFragmentDirections.actionPostFragmentToSendDataFragment(currentReport)
+                    view.findNavController().navigate(toSendData)
+                }
+            }
         }
+    }
+
+    private fun prepareData() {
+        val bitmap = MediaStore.Images.Media.getBitmap(
+            currentActivity.contentResolver,
+            args.filePost.toUri()
+        )
+        val notes = binding.notesInput.editText?.text.toString()
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream)
+        val byteArrayImage = stream.toByteArray()
+
+        val base64 = Base64.encodeToString(byteArrayImage, Base64.NO_WRAP)
+
+        val todayDate: Date = Calendar.getInstance().getTime()
+        val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        val todayString: String = formatter.format(todayDate)
+
+        currentReport = Report(
+            id = null,
+            userId = GoogleSignIn.getLastSignedInAccount(activity)?.id,
+            photo = base64,
+            description = notes,
+            date = todayString,
+            location = "${args.city}, ${args.province}",
+            latitude = args.latitude,
+            longitude = args.longitude
+        )
+
+        Log.d("BASE64", base64)
+        println(base64.length.toString())
+        Log.d("Country : ", args.country)
+        Log.d("Province : ", args.province)
+        Log.d("City : ", args.city)
+        Log.d("Region : ", args.region)
     }
 }
