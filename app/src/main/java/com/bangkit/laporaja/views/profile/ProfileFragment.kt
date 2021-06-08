@@ -67,7 +67,7 @@ class ProfileFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.setting_menu) {
-            val toSetting = ProfileFragmentDirections.actionNavigationProfileToSettingsFragment()
+            val toSetting = ProfileFragmentDirections.actionNavigationProfileToSettingsActivity()
             view?.findNavController()?.navigate(toSetting)
         }
         return super.onOptionsItemSelected(item)

@@ -1,12 +1,9 @@
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ListPreference
-        app:defaultValue="ID"
-        app:entries="@array/reply_entries"
-        app:entryValues="@array/reply_values"
-        app:key="language"
-        app:title="@string/bahasa"
-        app:useSimpleSummaryProvider="true"/>
-
+    <PreferenceCategory app:title="@string/language">
+        <Preference
+            app:key="select_language"
+            app:summary="@string/language_change_desc"
+            app:title="@string/language_option" />
+    </PreferenceCategory>
 </PreferenceScreen>

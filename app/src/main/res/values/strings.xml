@@ -56,12 +56,15 @@
     <string name="dummy_date">2021–06–01</string>
     <string name="image_detail">image_detail</string>
     <string name="detail_title">Detail laporan #%1$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="mengirim_data">Mengirim Data</string>
 
     <!-- Setting -->
     <string name="messages_header">Messages</string>
     <string name="bahasa">Ganti Bahasa</string>
     <string name="reply_title">Default reply action</string>
+    <string name="title_activity_settings">Pengaturan</string>
+    <string name="language">Bahasa</string>
+    <string name="language_change_desc">Pilih bahasa sistem</string>
+    <string name="language_option">Pilihan Bahasa</string>
+    <string name="settings_header">Pengaturan</string>
 </resources>

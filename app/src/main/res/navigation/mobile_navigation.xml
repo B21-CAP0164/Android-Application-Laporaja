@@ -39,8 +39,12 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_navigation_home_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_navigation_home_to_settingsActivity"
+            app:destination="@id/settingsActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -56,8 +60,12 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_navigation_history_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_navigation_history_to_settingsActivity"
+            app:destination="@id/settingsActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -66,8 +74,12 @@
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_navigation_profile_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_navigation_profile_to_settingsActivity"
+            app:destination="@id/settingsActivity"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -176,11 +188,10 @@
             android:name="model"
             app:argType="com.bangkit.laporaja.data.entity.Report" />
     </fragment>
-
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.bangkit.laporaja.views.setting.SettingsFragment"
-        android:label="SettingsFragment" />
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.bangkit.laporaja.views.settings.SettingsActivity"
+        android:label="SettingsActivity" />
 
 
 </navigation>
