@@ -1,6 +1,7 @@
 package com.bangkit.laporaja.views.post
 
 import android.graphics.Bitmap
+import android.graphics.Matrix
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.camera.core.impl.utils.Exif
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -69,10 +71,15 @@ class PostFragment : Fragment() {
     }
 
     private fun prepareData() {
-        val bitmap = MediaStore.Images.Media.getBitmap(
+        var bitmap = MediaStore.Images.Media.getBitmap(
             currentActivity.contentResolver,
             args.filePost.toUri()
         )
+
+        val matrix = Matrix()
+        matrix.postRotate(args.rotation.toFloat())
+        bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+
         val notes = binding.notesInput.editText?.text.toString()
         val stream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream)

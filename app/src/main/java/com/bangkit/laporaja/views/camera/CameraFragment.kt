@@ -1,6 +1,7 @@
 package com.bangkit.laporaja.views.camera
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
 import android.location.Address
@@ -18,6 +19,7 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
+import androidx.camera.core.impl.utils.Exif
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -148,12 +150,16 @@ class CameraFragment : Fragment() {
             imageCapture.takePicture(
                 outputOptions, ContextCompat.getMainExecutor(currentActivity),
                 object : ImageCapture.OnImageSavedCallback {
+                    @SuppressLint("RestrictedApi")
                     override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                        val exif = Exif.createFromFile(photoFile)
+                        val rotation = exif.rotation
                         val savedUri = Uri.fromFile(photoFile)
                         val msg = "Photo capture succeeded: $savedUri"
                         binding.cameraLoading.visibility = View.GONE
                         goToPost(
                             savedUri,
+                            rotation,
                             obj.countryName,
                             obj.adminArea,
                             obj.subAdminArea,
@@ -200,6 +206,7 @@ class CameraFragment : Fragment() {
 
     private fun goToPost(
         uriFile: Uri,
+        rotation: Int,
         country: String,
         province: String,
         city: String,
@@ -215,7 +222,8 @@ class CameraFragment : Fragment() {
             city,
             region,
             latitude,
-            longitude
+            longitude,
+            rotation
         )
         view?.findNavController()?.navigate(toPost)
     }

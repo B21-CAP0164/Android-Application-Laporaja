@@ -168,6 +168,9 @@
         <argument
             android:name="longitude"
             app:argType="float" />
+        <argument
+            android:name="rotation"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/sendDataFragment"
