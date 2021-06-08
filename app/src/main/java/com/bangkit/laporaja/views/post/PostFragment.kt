@@ -86,7 +86,7 @@ class PostFragment : Fragment() {
 
         val base64 = Base64.encodeToString(byteArrayImage, Base64.NO_WRAP)
 
-        val todayDate: Date = Calendar.getInstance().getTime()
+        val todayDate: Date = Calendar.getInstance().time
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         val todayString: String = formatter.format(todayDate)
 

@@ -41,6 +41,6 @@ class LaporAjaRepository(private val dataSource: RemoteDataSource) : LaporAjaRep
     }
 
     override fun sendDataToCloud(data: Report): Flow<Long> {
-        return dataSource.sendDataToCloud(data, data.googleId!!)
+        return dataSource.sendDataToCloud(data, data.googleId.toString())
     }
 }

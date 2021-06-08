@@ -14,7 +14,6 @@
     <!-- post-->
     <string name="kirim">Kirim</string>
     <string name="notes">Catatan</string>
-    <string name="location">Lokasi</string>
 
     <!-- home text -->
     <string name="hello_string">Halo, %1$s!</string>
@@ -57,7 +56,6 @@
     <string name="mengirim_data">Mengirim Data</string>
 
     <!-- Setting -->
-    <string name="bahasa">Ganti Bahasa</string>
     <string name="title_activity_settings">Pengaturan</string>
     <string name="language">Bahasa</string>
     <string name="language_change_desc">Pilih bahasa sistem</string>
@@ -65,4 +63,8 @@
     <string name="settings_header">Pengaturan</string>
     <string name="laporanmu">Laporanmu</string>
     <string name="nama_user">Pengguna</string>
+    <string name="logout_header">Keluar</string>
+    <string name="logout_confirm">Yakin ingin keluar?</string>
+    <string name="logout_yes">Ya</string>
+    <string name="logout_no">Tidak</string>
 </resources>

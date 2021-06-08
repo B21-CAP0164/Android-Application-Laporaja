@@ -131,7 +131,7 @@ class CameraFragment : Fragment() {
     private fun takePhoto() {
         val geocoder = Geocoder(currentActivity, Locale.getDefault())
         try {
-            val addresses: List<Address> = geocoder.getFromLocation(latitude!!, longitude!!, 1)
+            val addresses: List<Address> = geocoder.getFromLocation(latitude as Double, longitude as Double, 1)
             val obj: Address = addresses[0]
 
             val imageCapture = imageCapture ?: return

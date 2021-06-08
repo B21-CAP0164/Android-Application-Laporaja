@@ -54,12 +54,12 @@ class ProfileFragment : Fragment() {
 
         val logoutAlert = activity?.let {
             AlertDialog.Builder(it).setIcon(R.drawable.ic_exit_black)
-                .setTitle("Keluar")
-                .setMessage("Yakin ingin keluar?")
-                .setPositiveButton("Keluar") { _, _ ->
+                .setTitle(resources.getString(R.string.logout_header))
+                .setMessage(resources.getString(R.string.logout_confirm))
+                .setPositiveButton(resources.getString(R.string.logout_yes)) { _, _ ->
                     signOut()
                     Toast.makeText(activity, "Berhasil keluar", Toast.LENGTH_SHORT).show()
-                }.setNegativeButton("Tidak", null)
+                }.setNegativeButton(resources.getString(R.string.logout_no), null)
         }
 
         binding.logout.setOnClickListener {
