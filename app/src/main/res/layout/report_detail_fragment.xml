@@ -232,7 +232,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:text="@string/id_user"
+                    android:text="@string/nama_user"
                     android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="@+id/tv_id_detail"
                     app:layout_constraintStart_toStartOf="@+id/tv_id_detail"

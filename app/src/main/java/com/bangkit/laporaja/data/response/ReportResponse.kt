@@ -25,12 +25,18 @@ data class ReportResponseItem(
 	@field:SerializedName("id")
 	val id: Long? = null,
 
-	@field:SerializedName("user")
-	val user: String? = null,
+	@field:SerializedName("google_id")
+	val googleId: String? = null,
 
 	@field:SerializedName("lat")
 	val lat: String? = null,
 
 	@field:SerializedName("long")
-	val lon: String? = null
+	val lon: String? = null,
+
+	@field:SerializedName("email")
+	val email: String? = null,
+
+	@field:SerializedName("user_name")
+	val name: String? = null,
 ) : Parcelable

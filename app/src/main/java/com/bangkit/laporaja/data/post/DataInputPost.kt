@@ -30,4 +30,16 @@ data class DataInputPost(
     @SerializedName("damage_severity")
     @Expose
     val damageSeverity: String?,
+
+    @SerializedName("user_name")
+    @Expose
+    val userName: String?,
+
+    @SerializedName("google_id")
+    @Expose
+    val googleId: String?,
+
+    @SerializedName("email")
+    @Expose
+    val email: String?,
 ) : Parcelable

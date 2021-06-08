@@ -61,7 +61,7 @@ class ReportDetailFragment : Fragment() {
         currentActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         lifecycleScope.launch(Dispatchers.Default) {
-            viewModel.getDetails(currentReport.userId as String, currentReport.id as Long)
+            viewModel.getDetails(currentReport.googleId as String, currentReport.id as Long)
                 .collectLatest {
                     withContext(Dispatchers.Main) {
                         if (it.id != null) {
@@ -91,7 +91,7 @@ class ReportDetailFragment : Fragment() {
         binding.tvNotes.text = report.description
         binding.tvTingkatKeparahan.text = report.damageSeverity
         binding.tvCreatedAt.text = report.date
-        binding.tvIdUser.text = report.userId
+        binding.tvIdUser.text = report.name
 
         Glide.with(this)
             .load(report.photo)

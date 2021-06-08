@@ -13,8 +13,8 @@ data class ReportListResponseItem(
     @field:SerializedName("location_name")
     val locationName: String? = null,
 
-    @field:SerializedName("user_id")
-    val userId: String? = null,
+    @field:SerializedName("google_id")
+    val googleId: String? = null,
 
     @field:SerializedName("id")
     val id: Long? = null

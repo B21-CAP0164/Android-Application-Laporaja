@@ -62,7 +62,7 @@
     <string name="language">Language</string>
     <string name="language_change_desc">Change your system language</string>
     <string name="language_option">Language Selection</string>
-    <string name="settings_header">Pengaturan</string>
-    <string name="id_user">ID User</string>
+    <string name="settings_header">Settings</string>
     <string name="laporanmu">Your Reports</string>
+    <string name="nama_user">User</string>
 </resources>

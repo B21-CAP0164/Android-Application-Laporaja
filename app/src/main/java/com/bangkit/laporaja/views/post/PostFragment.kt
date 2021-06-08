@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.camera.core.impl.utils.Exif
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -91,9 +90,13 @@ class PostFragment : Fragment() {
         val formatter = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         val todayString: String = formatter.format(todayDate)
 
+        val currentUser = GoogleSignIn.getLastSignedInAccount(activity)
+
         currentReport = Report(
             id = null,
-            userId = GoogleSignIn.getLastSignedInAccount(activity)?.id,
+            googleId = currentUser?.id,
+            email = currentUser?.email,
+            name = currentUser?.displayName,
             photo = base64,
             description = notes,
             date = todayString,

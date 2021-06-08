@@ -63,6 +63,6 @@
     <string name="language_change_desc">Pilih bahasa sistem</string>
     <string name="language_option">Pilihan Bahasa</string>
     <string name="settings_header">Pengaturan</string>
-    <string name="id_user">ID User</string>
     <string name="laporanmu">Laporanmu</string>
+    <string name="nama_user">Pengguna</string>
 </resources>

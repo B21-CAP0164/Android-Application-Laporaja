@@ -9,7 +9,7 @@ object DataMapper {
     fun mapReportListResponseToReportList(input: List<ReportListResponseItem>) = input.map {
         Report(
             id = it.id,
-            userId = it.userId,
+            googleId = it.googleId,
             photo = it.image,
             location = it.locationName,
         )
@@ -17,7 +17,9 @@ object DataMapper {
 
     fun mapReportResponseToReport(it: ReportResponseItem) = Report(
         id = it.id,
-        userId = it.user,
+        googleId = it.googleId,
+        email = it.email,
+        name = it.name,
         photo = it.image,
         location = it.locationName,
         latitude = it.lat?.toFloat(),
@@ -33,6 +35,9 @@ object DataMapper {
         lon = it.longitude,
         image = it.photo,
         notes = it.description,
-        damageSeverity = it.damageSeverity?.replaceFirstChar { it.uppercase() }
+        damageSeverity = it.damageSeverity?.replaceFirstChar { it.uppercase() },
+        userName = it.name,
+        googleId = it.googleId,
+        email = it.email
     )
 }

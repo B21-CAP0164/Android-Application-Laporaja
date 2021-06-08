@@ -54,7 +54,9 @@ class SendDataFragment : Fragment() {
                         Log.d("Prediction", result.prediction.toString())
                         val report = Report(
                             id = null,
-                            userId = model.userId,
+                            googleId = model.googleId,
+                            email = model.email,
+                            name = model.name,
                             photo = model.photo,
                             description = model.description,
                             date = model.date,
@@ -63,10 +65,10 @@ class SendDataFragment : Fragment() {
                             longitude = model.longitude,
                             damageSeverity = result.prediction
                         )
-                        Log.d("ID", report.userId.toString())
+                        Log.d("ID", report.googleId.toString())
                         viewModel.sendDataToCloud(report).collectLatest { id ->
                             if (id != 0L) {
-                                val curReport = Report(id = id, userId = report.userId)
+                                val curReport = Report(id = id, googleId = report.googleId)
                                 withContext(Dispatchers.Main) {
                                     val toDetail =
                                         SendDataFragmentDirections.actionSendDataFragmentToReportDetailFragment(
