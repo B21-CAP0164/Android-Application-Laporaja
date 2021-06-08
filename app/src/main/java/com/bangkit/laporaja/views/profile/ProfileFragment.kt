@@ -58,7 +58,11 @@ class ProfileFragment : Fragment() {
                 .setMessage(resources.getString(R.string.logout_confirm))
                 .setPositiveButton(resources.getString(R.string.logout_yes)) { _, _ ->
                     signOut()
-                    Toast.makeText(activity, "Berhasil keluar", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        resources.getString(R.string.logout_success),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }.setNegativeButton(resources.getString(R.string.logout_no), null)
         }
 

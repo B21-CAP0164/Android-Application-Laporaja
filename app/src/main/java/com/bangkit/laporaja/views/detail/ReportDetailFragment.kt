@@ -3,7 +3,6 @@ package com.bangkit.laporaja.views.detail
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +43,6 @@ class ReportDetailFragment : Fragment() {
                 currentActivity.popToHome()
             }
             currentReport = args.report
-            Log.d("isGoingBackToHome", args.isGoingBackToHome.toString())
         }
 
         currentActivity.removeBottomBar()

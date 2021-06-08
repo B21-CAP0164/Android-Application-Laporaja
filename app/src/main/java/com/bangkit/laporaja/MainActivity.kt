@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         finishAfterTransition()
     }
 
-    fun language(language: String){
+    fun language(language: String) {
         val locale = Locale(language)
         Locale.setDefault(locale)
         val resources = resources
@@ -113,10 +112,8 @@ class MainActivity : AppCompatActivity() {
                 kotlin.run { doubleBackToExitOnce = false }
             }, 2000)
         } else {
-            Log.d("Current isGoingToHome", isGoingToHome.toString())
             if (isGoingToHome) {
                 val currentFragment = navHostFragment.childFragmentManager.fragments[0]
-                Log.d("Masuk", "Report Detail Fragment")
                 val detailFragment = currentFragment as ReportDetailFragment
                 val toHome =
                     ReportDetailFragmentDirections.actionReportDetailFragmentToNavigationHome()

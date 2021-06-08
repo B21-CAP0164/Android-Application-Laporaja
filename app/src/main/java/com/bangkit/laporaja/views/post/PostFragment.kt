@@ -5,7 +5,6 @@ import android.graphics.Matrix
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,8 +54,6 @@ class PostFragment : Fragment() {
             .load(args.filePost)
             .into(binding.imagePreview)
 
-        Log.d("FILEPATH", args.filePost)
-
         binding.btnKirim.setOnClickListener {
             lifecycleScope.launch(Dispatchers.Default) {
                 prepareData()
@@ -104,12 +101,5 @@ class PostFragment : Fragment() {
             latitude = args.latitude,
             longitude = args.longitude
         )
-
-        Log.d("BASE64", base64)
-        println(base64.length.toString())
-        Log.d("Country : ", args.country)
-        Log.d("Province : ", args.province)
-        Log.d("City : ", args.city)
-        Log.d("Region : ", args.region)
     }
 }

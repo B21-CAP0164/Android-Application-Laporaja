@@ -9,7 +9,7 @@
     <!-- camera-->
     <string name="cameraTitle">Create New Report</string>
     <string name="subHedingCamera">Take Damage Picture</string>
-    <string name="info">Take pictures of road damage by confirming the damage referred to in the frame.</string>
+    <string name="info">Take a picture of the road damage. Make sure the damage is clearly shown in the frame.</string>
 
     <!-- post-->
     <string name="kirim">Send</string>
@@ -33,11 +33,11 @@
     <!-- user-->
     <string name="name">Name</string>
     <string name="email">email@gmail.com</string>
-    <string name="logOut">Exit</string>
+    <string name="logOut">Logout</string>
 
     <!-- fragment -->
     <string name="settings">Setting</string>
-    <string name="exit_confirmation">Press again to exit</string>
+    <string name="exit_confirmation">Press again to exit from the app</string>
     <string name="tidak_ditemukan">Not Found</string>
     <string name="detail_laporan">Report Detail</string>
     <string name="catatan_tambahan">Notes</string>
@@ -67,4 +67,9 @@
     <string name="logout_confirm">Are you sure you want to logout?</string>
     <string name="logout_yes">Yes</string>
     <string name="logout_no">No</string>
+    <string name="error_cloud">Failed to send data to server. Check your internet connection. Error: Cloud connection failed.</string>
+    <string name="error_ml">Failed to send data to server. Check your internet connection. Error: Prediction failed.</string>
+    <string name="welcome_message">Welcome, %1$s</string>
+    <string name="login_failed">Login failed</string>
+    <string name="logout_success">Successfully logged out</string>
 </resources>

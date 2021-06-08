@@ -1,5 +1,6 @@
 package com.bangkit.laporaja.utils.modules
 
+import com.bangkit.laporaja.BuildConfig
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -27,7 +28,12 @@ val retrofitModule = module {
             .build()
 
         val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        if (BuildConfig.DEBUG) {
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+        } else {
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC)
+        }
 
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)

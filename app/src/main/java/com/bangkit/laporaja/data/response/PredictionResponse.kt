@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PredictionResponse(
     @field:SerializedName("prediction")
-    val prediction : String?,
+    val prediction: String?,
     @field:SerializedName("error")
-    val error : String? = null
+    val error: String? = null
 ) : Parcelable

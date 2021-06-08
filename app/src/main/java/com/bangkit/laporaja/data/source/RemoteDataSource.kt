@@ -74,7 +74,6 @@ class RemoteDataSource(private val api: ApiService) {
 
     fun sendDataToCloud(data: Report, id: String): Flow<Long> = flow {
         val input = DataMapper.mapReportToDataInput(data)
-        Log.d("Input", input.toString())
         val response = api.postDataToCloud(input, id, format)
 
         emit(response.id)

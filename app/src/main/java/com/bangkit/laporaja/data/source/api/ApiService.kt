@@ -32,10 +32,10 @@ interface ApiService {
         @Body data: PredictionPost
     ): PredictionResponse
 
-    @POST("report/{google_id}/add/")
+    @POST("report/{id}/add/")
     suspend fun postDataToCloud(
         @Body data: DataInputPost,
-        @Path("google_id") googleId: String?,
+        @Path("id") id: String?,
         @Query("format") format: String
     ): InsertResponse
 }

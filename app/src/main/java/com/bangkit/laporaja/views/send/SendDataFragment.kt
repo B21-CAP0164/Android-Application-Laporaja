@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bangkit.laporaja.MainActivity
+import com.bangkit.laporaja.R
 import com.bangkit.laporaja.data.entity.Report
 import com.bangkit.laporaja.databinding.SendDataFragmentBinding
 import com.bangkit.laporaja.viewmodels.SendDataViewModel
@@ -65,7 +66,7 @@ class SendDataFragment : Fragment() {
                             longitude = model.longitude,
                             damageSeverity = result.prediction
                         )
-                        Log.d("ID", report.googleId.toString())
+
                         viewModel.sendDataToCloud(report).collectLatest { id ->
                             if (id != 0L) {
                                 val curReport = Report(id = id, googleId = report.googleId)
@@ -81,7 +82,7 @@ class SendDataFragment : Fragment() {
                                 withContext(Dispatchers.Main) {
                                     Toast.makeText(
                                         activity,
-                                        "Data gagal dikirim ke server. Cek kembali koneksi anda.",
+                                        resources.getString(R.string.error_cloud),
                                         Toast.LENGTH_SHORT
                                     ).show()
                                 }
@@ -91,7 +92,7 @@ class SendDataFragment : Fragment() {
                         withContext(Dispatchers.Main) {
                             Toast.makeText(
                                 activity,
-                                "Data gagal dikirim ke server. Cek kembali koneksi anda.",
+                                resources.getString(R.string.error_ml),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }

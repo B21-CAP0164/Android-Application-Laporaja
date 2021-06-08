@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.history.HistoryFragment"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    tools:context=".views.history.HistoryFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -55,13 +55,13 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
         android:layout_marginTop="16dp"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        android:animateLayoutChanges="true">
+        app:layout_constraintTop_toBottomOf="@+id/view2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/list_empty"
@@ -113,8 +113,11 @@
                 android:orientation="vertical">
 
                 <include layout="@layout/item_list_placeholder" />
+
                 <include layout="@layout/item_list_placeholder" />
+
                 <include layout="@layout/item_list_placeholder" />
+
                 <include layout="@layout/item_list_placeholder" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </com.facebook.shimmer.ShimmerFrameLayout>
@@ -126,6 +129,6 @@
             android:clipToPadding="false"
             android:paddingBottom="64dp"
             android:visibility="gone"
-            tools:listitem="@layout/item_history_list"/>
+            tools:listitem="@layout/item_history_list" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>

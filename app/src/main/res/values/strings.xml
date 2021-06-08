@@ -33,11 +33,11 @@
     <!-- user-->
     <string name="name">Nama</string>
     <string name="email">email@gmail.com</string>
-    <string name="logOut">Keluar</string>
+    <string name="logOut">Logout</string>
 
     <!-- fragment -->
     <string name="settings">pengaturan</string>
-    <string name="exit_confirmation">Tekan lagi untuk keluar</string>
+    <string name="exit_confirmation">Tekan lagi untuk keluar aplikasi</string>
     <string name="tidak_ditemukan">Tidak ditemukan.</string>
     <string name="detail_laporan">Detail Laporan</string>
     <string name="catatan_tambahan">Catatan Tambahan</string>
@@ -63,8 +63,13 @@
     <string name="settings_header">Pengaturan</string>
     <string name="laporanmu">Laporanmu</string>
     <string name="nama_user">Pengguna</string>
-    <string name="logout_header">Keluar</string>
-    <string name="logout_confirm">Yakin ingin keluar?</string>
+    <string name="logout_header">Logout</string>
+    <string name="logout_confirm">Yakin ingin logout?</string>
     <string name="logout_yes">Ya</string>
     <string name="logout_no">Tidak</string>
+    <string name="error_cloud">Data gagal dikirim ke server. Cek kembali koneksi anda. Error: Koneksi cloud gagal.</string>
+    <string name="error_ml">Data gagal dikirim ke server. Cek kembali koneksi anda. Error: Prediction gagal</string>
+    <string name="welcome_message">Selamat datang, %1$s</string>
+    <string name="login_failed">Login gagal</string>
+    <string name="logout_success">Berhasil logout</string>
 </resources>

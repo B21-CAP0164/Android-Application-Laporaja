@@ -9,7 +9,7 @@
         android:id="@+id/navigation_home"
         android:name="com.bangkit.laporaja.views.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_navigation_camera"
             app:destination="@id/navigation_camera"
@@ -51,7 +51,7 @@
         android:id="@+id/navigation_history"
         android:name="com.bangkit.laporaja.views.history.HistoryFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/fragment_history" >
+        tools:layout="@layout/fragment_history">
         <action
             android:id="@+id/action_navigation_history_to_reportDetailFragment"
             app:destination="@id/reportDetailFragment"
@@ -96,19 +96,19 @@
             app:popExitAnim="@android:anim/slide_out_right">
             <argument
                 android:name="filePost"
-                app:argType="string"/>
+                app:argType="string" />
             <argument
                 android:name="country"
-                app:argType="string"/>
+                app:argType="string" />
             <argument
                 android:name="province"
-                app:argType="string"/>
+                app:argType="string" />
             <argument
                 android:name="city"
-                app:argType="string"/>
+                app:argType="string" />
             <argument
                 android:name="region"
-                app:argType="string"/>
+                app:argType="string" />
         </action>
     </fragment>
 
@@ -116,7 +116,7 @@
         android:id="@+id/reportDetailFragment"
         android:name="com.bangkit.laporaja.views.detail.ReportDetailFragment"
         android:label="report_detail_fragment"
-        tools:layout="@layout/report_detail_fragment" >
+        tools:layout="@layout/report_detail_fragment">
         <argument
             android:name="report"
             app:argType="com.bangkit.laporaja.data.entity.Report" />
@@ -142,19 +142,19 @@
         tools:layout="@layout/fragment_post">
         <argument
             android:name="filePost"
-            app:argType="string"/>
+            app:argType="string" />
         <argument
             android:name="country"
-            app:argType="string"/>
+            app:argType="string" />
         <argument
             android:name="province"
-            app:argType="string"/>
+            app:argType="string" />
         <argument
             android:name="city"
-            app:argType="string"/>
+            app:argType="string" />
         <argument
             android:name="region"
-            app:argType="string"/>
+            app:argType="string" />
         <action
             android:id="@+id/action_PostFragment_to_sendDataFragment"
             app:destination="@id/sendDataFragment"
@@ -176,7 +176,7 @@
         android:id="@+id/sendDataFragment"
         android:name="com.bangkit.laporaja.views.send.SendDataFragment"
         android:label="send_data_fragment"
-        tools:layout="@layout/send_data_fragment" >
+        tools:layout="@layout/send_data_fragment">
         <action
             android:id="@+id/action_sendDataFragment_to_reportDetailFragment"
             app:destination="@id/reportDetailFragment"

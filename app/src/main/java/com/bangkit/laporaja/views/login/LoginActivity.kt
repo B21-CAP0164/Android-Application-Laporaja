@@ -82,14 +82,21 @@ class LoginActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
                         this@LoginActivity,
-                        "Welcome, ${GoogleSignIn.getLastSignedInAccount(this@LoginActivity)?.givenName}",
+                        resources.getString(
+                            R.string.welcome_message,
+                            GoogleSignIn.getLastSignedInAccount(this@LoginActivity)?.givenName
+                        ),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
                 this@LoginActivity.finishAfterTransition()
             } else {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@LoginActivity, "Login Failed", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@LoginActivity,
+                        resources.getString(R.string.login_failed),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }

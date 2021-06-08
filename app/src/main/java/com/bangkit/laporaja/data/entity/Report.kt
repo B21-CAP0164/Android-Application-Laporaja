@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Report (
+data class Report(
     val id: Long? = null,
     val googleId: String? = null,
     val email: String? = null,
