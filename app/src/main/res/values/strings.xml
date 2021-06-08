@@ -7,6 +7,7 @@
     <string name="title_camera">Kamera</string>
 
     <!-- camera-->
+    <string name="cameraTitle">Buat laporan baru</string>
     <string name="subHedingCamera">Ambil Gambar Kerusakan</string>
     <string name="info">Ambil gambar kerusakan jalan dengan memastikan kerusakan yang dimaksud didalam frame.</string>
 

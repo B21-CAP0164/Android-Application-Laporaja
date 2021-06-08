@@ -21,6 +21,7 @@ import com.bangkit.laporaja.views.login.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.File
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
@@ -61,6 +62,15 @@ class MainActivity : AppCompatActivity() {
 
     fun destroy() {
         finishAfterTransition()
+    }
+
+    fun language(language: String){
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val resources = resources
+        val configuration = resources.configuration
+        configuration.locale = locale
+        resources.updateConfiguration(configuration, resources.displayMetrics)
     }
 
     fun getOutputDirectory(): File {
