@@ -49,6 +49,7 @@ class HistoryFragment : Fragment() {
         setHasOptionsMenu(true)
         val toolbar = binding.topAppBar
         currentActivity.setSupportActionBar(toolbar)
+        currentActivity.supportActionBar?.title = resources.getString(R.string.laporanmu)
 
         val account = GoogleSignIn.getLastSignedInAccount(activity)
         val userId = account?.id.toString()

@@ -10,8 +10,10 @@ import androidx.navigation.findNavController
 import com.bangkit.laporaja.MainActivity
 import com.bangkit.laporaja.R
 import com.bangkit.laporaja.databinding.FragmentProfileBinding
+import com.bangkit.laporaja.utils.ShimmerDrawableInit
 import com.bangkit.laporaja.views.login.LoginActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
@@ -43,6 +45,11 @@ class ProfileFragment : Fragment() {
         binding.tvEmail.text = acct?.email
         Glide.with(view)
             .load(acct?.photoUrl)
+            .apply(
+                RequestOptions().override(400, 400)
+                    .placeholder(ShimmerDrawableInit.shimmerDrawable)
+                    .error(R.drawable.ic_broken_image_black)
+            )
             .into(binding.profileImage)
 
         val logoutAlert = activity?.let {

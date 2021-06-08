@@ -48,8 +48,6 @@
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu vel enim vehicula congue. Phasellus a convallis ante, sit amet mattis nulla. Cras malesuada feugiat lorem id malesuada. In orci est, tristique quis malesuada sit amet, vulputate sed nunc. Donec eget tortor sem. Sed eu pharetra justo, at porttitor lacus. In fringilla suscipit ligula, ac eleifend lorem volutpat quis. Maecenas laoreet, ex nec viverra tempus, lectus nulla fringilla purus, sed venenatis diam arcu at leo.
     </string>
-    <string name="tipe_kerusakan">Tipe Kerusakan</string>
-    <string name="dummy_tipe_kerusakan">Jalanan Berlubang</string>
     <string name="tingkat_keparahan">Tingkat Keparahan</string>
     <string name="dummy_tingkat_keparahan">Very Poor</string>
     <string name="tanggal_dibuat">Tanggal Dibuat</string>
@@ -59,12 +57,12 @@
     <string name="mengirim_data">Mengirim Data</string>
 
     <!-- Setting -->
-    <string name="messages_header">Messages</string>
     <string name="bahasa">Ganti Bahasa</string>
-    <string name="reply_title">Default reply action</string>
     <string name="title_activity_settings">Pengaturan</string>
     <string name="language">Bahasa</string>
     <string name="language_change_desc">Pilih bahasa sistem</string>
     <string name="language_option">Pilihan Bahasa</string>
     <string name="settings_header">Pengaturan</string>
+    <string name="id_user">ID User</string>
+    <string name="laporanmu">Laporanmu</string>
 </resources>

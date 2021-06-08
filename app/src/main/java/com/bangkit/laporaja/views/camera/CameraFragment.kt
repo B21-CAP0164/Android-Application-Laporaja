@@ -54,7 +54,8 @@ class CameraFragment : Fragment() {
             Manifest.permission.CAMERA,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
         )
     }
 
@@ -82,6 +83,15 @@ class CameraFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        if (allPermissionsGranted()) {
+            startCamera()
+            getLocation()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -90,6 +100,7 @@ class CameraFragment : Fragment() {
         currentActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.cameraButton.setOnClickListener {
+            binding.cameraLoading.visibility = View.VISIBLE
             takePhoto()
         }
 
@@ -140,6 +151,7 @@ class CameraFragment : Fragment() {
                     override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                         val savedUri = Uri.fromFile(photoFile)
                         val msg = "Photo capture succeeded: $savedUri"
+                        binding.cameraLoading.visibility = View.GONE
                         goToPost(
                             savedUri,
                             obj.countryName,

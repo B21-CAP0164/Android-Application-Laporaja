@@ -33,6 +33,6 @@ object DataMapper {
         lon = it.longitude,
         image = it.photo,
         notes = it.description,
-        damageSeverity = it.damageSeverity
+        damageSeverity = it.damageSeverity?.replaceFirstChar { it.uppercase() }
     )
 }

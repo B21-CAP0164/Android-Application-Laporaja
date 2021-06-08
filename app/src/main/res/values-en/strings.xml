@@ -21,7 +21,7 @@
     <string name="laporan">Report</string>
     <string name="dummy_value">10</string>
     <string name="laporan_btn">Create Report</string>
-    <string name="history_laporan">News Report</string>
+    <string name="history_laporan">Recent Report</string>
 
     <!-- History-->
     <string name="laporan_anda">All Reports</string>
@@ -41,15 +41,13 @@
     <string name="exit_confirmation">Press again to exit</string>
     <string name="tidak_ditemukan">Not Found</string>
     <string name="detail_laporan">Report Detail</string>
-    <string name="catatan_tambahan">Postscript</string>
+    <string name="catatan_tambahan">Notes</string>
     <string name="id_laporan_title">Report ID</string>
 
     <!-- LOREM IPSUM -->
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu arcu vel enim vehicula congue. Phasellus a convallis ante, sit amet mattis nulla. Cras malesuada feugiat lorem id malesuada. In orci est, tristique quis malesuada sit amet, vulputate sed nunc. Donec eget tortor sem. Sed eu pharetra justo, at porttitor lacus. In fringilla suscipit ligula, ac eleifend lorem volutpat quis. Maecenas laoreet, ex nec viverra tempus, lectus nulla fringilla purus, sed venenatis diam arcu at leo.
     </string>
-    <string name="tipe_kerusakan">Damage Type</string>
-    <string name="dummy_tipe_kerusakan">Jalanan Berlubang</string>
     <string name="tingkat_keparahan">Severity</string>
     <string name="dummy_tingkat_keparahan">Very Poor</string>
     <string name="tanggal_dibuat">Date Created</string>
@@ -59,12 +57,12 @@
     <string name="mengirim_data">Sending Data</string>
 
     <!-- Setting -->
-    <string name="messages_header">Messages</string>
     <string name="bahasa">Change language</string>
-    <string name="reply_title">Default reply action</string>
     <string name="title_activity_settings">Settings</string>
     <string name="language">Language</string>
     <string name="language_change_desc">Change your system language</string>
     <string name="language_option">Language Selection</string>
     <string name="settings_header">Pengaturan</string>
+    <string name="id_user">ID User</string>
+    <string name="laporanmu">Your Reports</string>
 </resources>

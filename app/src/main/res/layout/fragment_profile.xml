@@ -57,11 +57,14 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="90dp"
-                android:textSize="24sp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="center"
                 android:textColor="@color/black"
+                android:textSize="24sp"
                 app:fontFamily="@font/poppins_semibold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,10 +73,13 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAlignment="center"
                 android:textColor="@color/black"
+                android:textSize="16sp"
                 app:fontFamily="@font/poppins_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

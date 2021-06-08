@@ -91,6 +91,7 @@ class ReportDetailFragment : Fragment() {
         binding.tvNotes.text = report.description
         binding.tvTingkatKeparahan.text = report.damageSeverity
         binding.tvCreatedAt.text = report.date
+        binding.tvIdUser.text = report.userId
 
         Glide.with(this)
             .load(report.photo)
