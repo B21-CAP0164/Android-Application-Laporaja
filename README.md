@@ -36,7 +36,6 @@
 * [Kotlin Programming Language](https://kotlinlang.org/)
 
 <!-- GETTING STARTED -->
-
 ### Prerequisites
 1. Android Nougat
 2. Internet Connection
